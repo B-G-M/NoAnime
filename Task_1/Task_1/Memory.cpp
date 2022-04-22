@@ -2,25 +2,50 @@
 
 Memory::~Memory()
 {
-	for (int i = 0; i < pool.size(); i++)
+	for (int i = segmentsCount; i > 0 ; i--)
 	{
-		pool[i].Delete();
+		ClearSegment(i);
 	}
 }
 
-Segment Memory::NewSegment(int bufferSize)
+int Memory::AddSegment(int size)
 {
-	Segment segment(bufferSize);
-	
-	if (pool.size() > 0)
-		segment.SetUpperSegment(&pool[pool.size() - 1]);
-
-	pool.push_back(segment);
-
-	return segment;
+	if (size >= maxSize)
+		return -1;
+	segment = new Segment(size);
+	segment->statusFree = false;
+	segment->upperLink = previous;
+	previous = segment;
+	memorySize += size;
+	segmentsCount++;
+	return 0;
 }
 
-void Memory::DeleteSegment(int segmentNumber)
+void Memory::ClearSegment(int number)
 {
-	pool[segmentNumber - 1].Delete();
+	Segment* temp = segment;
+	for (int i = segmentsCount; i >= number; i--)
+	{
+		if (i == number)
+			if (!temp->statusFree)
+			{
+				delete temp->segment;
+				temp->statusFree = true;
+			}
+				
+		temp = temp->upperLink;
+	}
 }
+
+Memory::Segment::Segment(int size)
+{
+	segmentSize = size;
+	segment = new char[size];
+	this->statusFree = false;
+	this->upperLink = nullptr;
+}
+
+Memory::Segment::~Segment()
+{
+}
+

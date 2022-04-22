@@ -1,9 +1,9 @@
 #include <iostream>
-#include <vector>
 #include "windows.h";
 #include "Memory.h"
 
 using namespace std;
+
 
 int main()
 {
@@ -12,14 +12,21 @@ int main()
 
 	Memory memory;
 
-	memory.NewSegment(8);
-	memory.NewSegment(3);
-	memory.NewSegment(9);
-	memory.NewSegment(5);
-	memory.NewSegment(1);
+	memory.AddSegment(8);
+	memory.AddSegment(3);
+	memory.AddSegment(9);
+	memory.AddSegment(5);
+	memory.AddSegment(1);
 
-	memory.DeleteSegment(2);
-	memory.DeleteSegment(4);
+	memory.ClearSegment(2);
+	memory.ClearSegment(4);
+	memory.ClearSegment(9);
+
+	memory.AddSegment(1024) == -1 ? cout << "Error" << endl : cout << "OK" << endl;
+
+	memory.AddSegment(512);
+	memory.AddSegment(512);
+	memory.AddSegment(512);
 	return 0;
 }
 

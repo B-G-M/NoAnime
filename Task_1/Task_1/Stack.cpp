@@ -1,4 +1,5 @@
 #include "Stack.h"
+#include "Memory.h"
 
 Stack::Stack()
 {

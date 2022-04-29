@@ -2,6 +2,7 @@
 #include "windows.h";
 #include "Memory.h"
 #include "Stack.h"
+#include "Queue.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ int main()
 	string exception;
 	Memory memory;
 	Stack stack;
+	Queue queue;
 
 	memory.PushBack(8);
 	memory.PushBack(3);
@@ -31,7 +33,7 @@ int main()
 	memory.PushBack(512);
 	memory.PushBack(512);
 
-	
+	/*
 	stack.PushFront(1);
 	stack.PushFront(7);
 	stack.PushFront(3);
@@ -40,7 +42,18 @@ int main()
 	stack.PushFront(4);
 
 	stack.Delete();
-	stack.Print();
+	stack.Print();*/
+
+
+	queue.PushFront(1);
+	queue.PushFront(5);
+	queue.PushFront(3);
+	queue.PushFront(6);
+	queue.PushFront(2);
+	queue.PushFront(7);
+
+	queue.Delete();
+	queue.Print();
 
 	return 0;
 }

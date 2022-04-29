@@ -60,16 +60,16 @@ void Memory::ClearSegment(int number)
 
 void Memory::retSegment(int id)
 {
-	Segment *temp = head;
+	Segment *temp = tail;
 
-	for (int i = 1; i <= segmentsCount; i++)
+	for (int i = segmentsCount; i >= 1; i--)
 	{
 		if (i == id)
 		{
 			Segment& t = *temp;
 			t.Print();
 		}
-		temp = temp->pNext;
+		temp = temp->pPrev;
 	}
 }
 
@@ -143,5 +143,25 @@ void Memory::Segment::Print()
 		cout << "Статус сегмента: Используется" << endl;
 
 	cout << "Сегмент: " << segment << endl;
+}
+
+
+
+
+
+void Memory::retSegmentQueue(int id)
+{
+	Segment* temp = head;
+
+	for (int i = 0; i < segmentsCount; i++)
+	{
+		if (i == id)
+		{
+			Segment& t = *temp;
+			t.Print();
+		}
+		temp = temp->pNext;
+	}
+	
 }
 

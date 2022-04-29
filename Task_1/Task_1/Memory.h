@@ -14,6 +14,7 @@ public:
 	string PushFront(int);
 	void Print();
 	void ClearSegment(int);
+	
 
 private:
 	class Segment
@@ -46,5 +47,5 @@ private:
 
 public: 	
 	void retSegment(int id);
-
+	void retSegmentQueue(int id);
 };

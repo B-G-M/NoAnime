@@ -1,5 +1,6 @@
 #include "Memory.h"
 
+
 class Stack
 {
 public:
@@ -15,5 +16,4 @@ private:
 	Memory List;
 
 };
-
 

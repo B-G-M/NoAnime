@@ -1,4 +1,5 @@
 #include "Memory.h"
+#include <iostream>
 
 Memory::~Memory()
 {
@@ -8,7 +9,7 @@ Memory::~Memory()
 	}
 }
 
-string Memory::AddSegment(int size)
+string Memory::PushBack(int size)
 {
 	if (size >= maxSize)
 		return "length_error";
@@ -43,8 +44,8 @@ string Memory::AddSegment(int size)
 
 void Memory::ClearSegment(int number)
 {
-	Segment* temp = segment;
-	for (int i = segmentsCount; i >= number; i--)
+	Segment* temp = head;
+	for (int i = 0; i < segmentsCount; i++)
 	{
 		if (i == number)
 			if (!temp->statusFree)
@@ -53,7 +54,22 @@ void Memory::ClearSegment(int number)
 				temp->statusFree = true;
 			}
 				
-		temp = temp->pPrev;
+		temp = temp->pNext;
+	}
+}
+
+void Memory::retSegment(int id)
+{
+	Segment *temp = head;
+
+	for (int i = 1; i <= segmentsCount; i++)
+	{
+		if (i == id)
+		{
+			Segment& t = *temp;
+			t.Print();
+		}
+		temp = temp->pNext;
 	}
 }
 
@@ -68,5 +84,64 @@ Memory::Segment::Segment(int size)
 
 Memory::Segment::~Segment()
 {
+}
+
+string Memory::PushFront(int size)
+{
+	if (size >= maxSize)
+		return "length_error";
+
+	try
+	{
+		segment = new Segment(size);
+	}
+	catch (const std::exception& ex)
+	{
+		return ex.what();
+	}
+	
+	segment->statusFree = false;
+	memorySize += size;
+	segmentsCount++;
+
+	if (segmentsCount <= 1)
+	{
+		segment->pNext = segment;
+		segment->pPrev = segment;  
+		head = segment;
+		tail = segment;
+		return "OK";
+	}
+
+	segment->pNext = head;
+	head->pPrev = segment;   
+	head = segment;
+	return "OK";
+
+}
+
+void Memory::Print()
+{
+	Segment *temp = head; 
+	Segment &print = *head;
+
+	for (int i = 0; i < segmentsCount; i++)
+	{
+		print.Print(); 
+		temp = temp->pNext;
+		print = *temp;
+	}
+}
+
+void Memory::Segment::Print()
+{
+	cout << endl << "Размер сегмента: " << segmentSize << endl;
+	
+	if (statusFree)
+		cout << "Статус сегмента: Cвободен" << endl;
+	else 
+		cout << "Статус сегмента: Используется" << endl;
+
+	cout << "Сегмент: " << segment << endl;
 }
 

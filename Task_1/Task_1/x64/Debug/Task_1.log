@@ -1,3 +1,2 @@
-﻿  main.cpp
-D:\NoAnime\Task_1\Task_1\main.cpp(2,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-  Task_1.vcxproj -> D:\NoAnime\Task_1\x64\Debug\Task_1.exe
+﻿  Memory.cpp
+  Task_1.vcxproj -> C:\Users\user\Documents\GitHub\NoAnime\Task_1\x64\Debug\Task_1.exe

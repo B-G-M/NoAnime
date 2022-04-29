@@ -9,7 +9,10 @@ public:
 	Memory() {};
 	~Memory();
 
-	string AddSegment(int);
+
+	string PushBack(int);
+	string PushFront(int);
+	void Print();
 	void ClearSegment(int);
 
 private:
@@ -19,12 +22,17 @@ private:
 		Segment(int);
 		~Segment();
 
+
+		void Print();
+
+
 		int	segmentSize;
 		bool statusFree;
 		char* segment;
 		Segment* pNext = nullptr;
 		Segment* pPrev = nullptr;
 	};
+
 
 	int memorySize;
 	int segmentsCount;
@@ -35,4 +43,8 @@ private:
 
 	Segment* head = nullptr;
 	Segment* tail = nullptr;
+
+public: 	
+	void retSegment(int id);
+
 };

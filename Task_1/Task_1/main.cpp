@@ -1,6 +1,7 @@
 #include <iostream>
 #include "windows.h";
 #include "Memory.h"
+#include "Stack.h"
 
 using namespace std;
 
@@ -12,22 +13,35 @@ int main()
 
 	string exception;
 	Memory memory;
+	Stack stack;
 
-	memory.AddSegment(8);
-	memory.AddSegment(3);
-	memory.AddSegment(9);
-	memory.AddSegment(5);
-	memory.AddSegment(1);
+	memory.PushBack(8);
+	memory.PushBack(3);
+	memory.PushBack(9);
+	memory.PushBack(5);
+	memory.PushBack(1);
 
 	memory.ClearSegment(2);
 	memory.ClearSegment(4);
-	memory.ClearSegment(9);
+	memory.ClearSegment(3);
 
-	cout << memory.AddSegment(1024);
+	cout << memory.PushBack(1024);
 
-	memory.AddSegment(512);
-	memory.AddSegment(512);
-	memory.AddSegment(512);
+	memory.PushBack(512);
+	memory.PushBack(512);
+	memory.PushBack(512);
+
+	
+	stack.PushFront(1);
+	stack.PushFront(7);
+	stack.PushFront(3);
+	stack.PushFront(5);
+	stack.PushFront(1);
+	stack.PushFront(4);
+
+	stack.Delete();
+	stack.Print();
+
 	return 0;
 }
 

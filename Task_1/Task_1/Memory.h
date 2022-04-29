@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include "string"
 
 using namespace std;
 
@@ -9,7 +9,7 @@ public:
 	Memory() {};
 	~Memory();
 
-	int AddSegment(int);
+	string AddSegment(int);
 	void ClearSegment(int);
 
 private:
@@ -22,7 +22,8 @@ private:
 		int	segmentSize;
 		bool statusFree;
 		char* segment;
-		Segment* upperLink;
+		Segment* pNext = nullptr;
+		Segment* pPrev = nullptr;
 	};
 
 	int memorySize;
@@ -31,5 +32,7 @@ private:
 	const int maxSize = 1024;
 
 	Segment* segment;
-	Segment* previous = nullptr;
+
+	Segment* head = nullptr;
+	Segment* tail = nullptr;
 };

@@ -10,6 +10,7 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
+	string exception;
 	Memory memory;
 
 	memory.AddSegment(8);
@@ -22,7 +23,7 @@ int main()
 	memory.ClearSegment(4);
 	memory.ClearSegment(9);
 
-	memory.AddSegment(1024) == -1 ? cout << "Error" << endl : cout << "OK" << endl;
+	cout << memory.AddSegment(1024);
 
 	memory.AddSegment(512);
 	memory.AddSegment(512);

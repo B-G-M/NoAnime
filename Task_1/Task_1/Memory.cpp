@@ -8,17 +8,37 @@ Memory::~Memory()
 	}
 }
 
-int Memory::AddSegment(int size)
+string Memory::AddSegment(int size)
 {
 	if (size >= maxSize)
-		return -1;
-	segment = new Segment(size);
+		return "length_error";
+
+	try
+	{
+		segment = new Segment(size);
+	}
+	catch (const std::exception& ex)
+	{
+		return ex.what();
+	}
+	
 	segment->statusFree = false;
-	segment->upperLink = previous;
-	previous = segment;
 	memorySize += size;
 	segmentsCount++;
-	return 0;
+
+	if (segmentsCount <= 1)
+	{
+		segment->pNext = segment;
+		segment->pPrev = segment;
+		head = segment;
+		tail = segment;
+		return "OK";
+	}
+	
+	segment->pPrev = tail;
+	tail->pNext = segment;
+	tail = segment;
+	return "OK";
 }
 
 void Memory::ClearSegment(int number)
@@ -33,7 +53,7 @@ void Memory::ClearSegment(int number)
 				temp->statusFree = true;
 			}
 				
-		temp = temp->upperLink;
+		temp = temp->pPrev;
 	}
 }
 
@@ -42,7 +62,8 @@ Memory::Segment::Segment(int size)
 	segmentSize = size;
 	segment = new char[size];
 	this->statusFree = false;
-	this->upperLink = nullptr;
+	this->pPrev = nullptr;
+	this->pNext = nullptr;
 }
 
 Memory::Segment::~Segment()

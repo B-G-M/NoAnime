@@ -67,7 +67,9 @@ void Memory::retSegment(int id)
 		if (i == id)
 		{
 			Segment& t = *temp;
+			cout << endl << "Следующий элемент был выбран: " << endl;
 			t.Print();
+			cout << " ---------------------------------------";
 		}
 		temp = temp->pNext;
 	}
@@ -157,11 +159,30 @@ void Memory::ClearSegmentQueue(int number)
 				delete temp->segment;
 				temp->statusFree = true;
 			}
-
 		temp = temp->pNext;
 	}
 }
 
+void Memory::PopBack()
+{
+	Segment* temp = tail;
+	for (int i = segmentsCount; i >= 1; i--)
+	{
+		if (!tail->statusFree)
+			ClearSegment(i);
+		temp = temp->pPrev;
+	}
+}
+void Memory::PopFront()
+{
+	Segment* temp = head;
+	for (int i = 1; i <= segmentsCount; i++)
+	{
+		if (!temp->statusFree)
+			ClearSegment(i);
+		temp = temp->pNext;
+	}
+}
 
 void Memory::retSegmentQueue(int id)
 {
@@ -172,7 +193,10 @@ void Memory::retSegmentQueue(int id)
 		if (i == id)
 		{
 			Segment& t = *temp;
+			cout << endl << "Следующий элемент был выбран: " << endl;
 			t.Print();
+			cout << " ---------------------------------------";
+
 		}
 		temp = temp->pNext;
 	}

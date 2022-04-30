@@ -17,7 +17,7 @@ int main()
 	Stack stack;
 	Queue queue;
 
-	memory.PushBack(8);
+	/*memory.PushBack(8);
 	memory.PushBack(3);
 	memory.PushBack(9);
 	memory.PushBack(5);
@@ -27,31 +27,25 @@ int main()
 	memory.ClearSegment(4);
 	memory.ClearSegment(3);
 
-	cout << memory.PushBack(1024);
+	memory.PushBack(1024);
 
 	memory.PushBack(512);
 	memory.PushBack(512);
-	memory.PushBack(512);
+	memory.PushBack(512);*/
 
 	
-	/*stack.PushFront(1);
+	stack.PushFront(1);
 	stack.PushFront(7);
 	stack.PushFront(3);
-	stack.PushFront(5);
-	stack.PushFront(6);
-	stack.PushFront(4);
 	stack.Delete();
-	stack.Print();*/
+	stack.Print();
 
 
-	queue.PushFront(1);
+	/*queue.PushFront(1);
 	queue.PushFront(5);
 	queue.PushFront(3);
-	queue.PushFront(6);
-	queue.PushFront(2);
-	queue.PushFront(7);
 	queue.Delete();
-	queue.Print();
+	queue.Print();*/
 
 	return 0;
 }

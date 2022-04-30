@@ -60,16 +60,16 @@ void Memory::ClearSegment(int number)
 
 void Memory::retSegment(int id)
 {
-	Segment *temp = tail;
+	Segment *temp = head;
 
-	for (int i = segmentsCount; i >= 1; i--)
+	for (int i = 0; i <= segmentsCount; i++)
 	{
 		if (i == id)
 		{
 			Segment& t = *temp;
 			t.Print();
 		}
-		temp = temp->pPrev;
+		temp = temp->pNext;
 	}
 }
 
@@ -146,14 +146,28 @@ void Memory::Segment::Print()
 }
 
 
+void Memory::ClearSegmentQueue(int number)
+{
+	Segment* temp = tail;
+	for (int i = segmentsCount; i >= 0; i--)
+	{
+		if (i == number)
+			if (!temp->statusFree)
+			{
+				delete temp->segment;
+				temp->statusFree = true;
+			}
 
+		temp = temp->pNext;
+	}
+}
 
 
 void Memory::retSegmentQueue(int id)
 {
-	Segment* temp = head;
+	Segment* temp = tail;
 
-	for (int i = 0; i < segmentsCount; i++)
+	for (int i = segmentsCount; i >= 0; i--)
 	{
 		if (i == id)
 		{

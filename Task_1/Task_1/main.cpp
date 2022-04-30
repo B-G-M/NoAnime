@@ -33,14 +33,13 @@ int main()
 	memory.PushBack(512);
 	memory.PushBack(512);
 
-	/*
-	stack.PushFront(1);
+	
+	/*stack.PushFront(1);
 	stack.PushFront(7);
 	stack.PushFront(3);
 	stack.PushFront(5);
-	stack.PushFront(1);
+	stack.PushFront(6);
 	stack.PushFront(4);
-
 	stack.Delete();
 	stack.Print();*/
 
@@ -51,7 +50,6 @@ int main()
 	queue.PushFront(6);
 	queue.PushFront(2);
 	queue.PushFront(7);
-
 	queue.Delete();
 	queue.Print();
 

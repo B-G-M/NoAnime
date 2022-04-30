@@ -17,8 +17,9 @@ void Queue::PushFront(int size)
 
 void Queue::Delete()
 {
-	List.ClearSegment(1);
-	List.retSegmentQueue(1);
+	List.retSegmentQueue(0);
+	/*List.ClearSegment(0);*/
+	List.ClearSegmentQueue(0);
 }
 
 void Queue::Print()

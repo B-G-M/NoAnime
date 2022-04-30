@@ -9,7 +9,6 @@ public:
 
 	void PushFront(int size);
 	void Delete();
-	
 	void Print();
 
 private:

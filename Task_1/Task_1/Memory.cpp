@@ -1,13 +1,18 @@
 #include "Memory.h"
 #include <iostream>
+#include <string>
+
+
 
 Memory::~Memory()
 {
-	for (int i = segmentsCount; i > 0 ; i--)
+	for (int i = segmentsCount; i > 0; i--)
 	{
-		PopBack1();
+		PopBack();
 	}
 }
+
+
 
 string Memory::PushBack(int size)
 {
@@ -22,7 +27,7 @@ string Memory::PushBack(int size)
 	{
 		return ex.what();
 	}
-	
+
 	segment->statusFree = false;
 	memorySize += size;
 	segmentsCount++;
@@ -35,12 +40,14 @@ string Memory::PushBack(int size)
 		tail = segment;
 		return "OK";
 	}
-	
+
 	segment->pPrev = tail;
 	tail->pNext = segment;
 	tail = segment;
 	return "OK";
 }
+
+
 
 void Memory::ClearSegment(int number)
 {
@@ -60,17 +67,27 @@ void Memory::ClearSegment(int number)
 	}
 }
 
-void Memory::retSegment(Segment print)
+
+
+string Memory::retSegment(Segment print)
 {
-	cout << endl << "Следующий элемент был удален : " << endl;
-	print.Print();
-	cout << " ---------------------------------------";
+	string r = "\n";
+	r += "Следующий элемент был удален : ";
+	r += print.Print();
+	r += "\n";
+	r += " ---------------------------------------";
+	r += "\n";
+	return r;
 }
+
+
 
 int Memory::GetSegmentsCount()
 {
 	return segmentsCount;
 }
+
+
 
 Memory::Segment::Segment(int size)
 {
@@ -81,9 +98,13 @@ Memory::Segment::Segment(int size)
 	this->pNext = nullptr;
 }
 
+
+
 Memory::Segment::~Segment()
 {
 }
+
+
 
 string Memory::PushFront(int size)
 {
@@ -98,7 +119,7 @@ string Memory::PushFront(int size)
 	{
 		return ex.what();
 	}
-	
+
 	segment->statusFree = false;
 	memorySize += size;
 	segmentsCount++;
@@ -106,82 +127,88 @@ string Memory::PushFront(int size)
 	if (segmentsCount <= 1)
 	{
 		segment->pNext = segment;
-		segment->pPrev = segment;  
+		segment->pPrev = segment;
 		head = segment;
 		tail = segment;
 		return "OK";
 	}
 
 	segment->pNext = head;
-	head->pPrev = segment;   
+	head->pPrev = segment;
 	head = segment;
 	return "OK";
-
 }
 
-void Memory::Print()
+
+
+string Memory::Print()
 {
-	Segment *temp = head; 
-	Segment &print = *head;
+	Segment* temp = head;
+	Segment& print = *head;
+	string r = "";
 
 	for (int i = 0; i < segmentsCount; i++)
 	{
-		print.Print();
+		r += print.Print();
+		r += "\n\n";
 		if (i != segmentsCount - 1)
 		{
 			temp = temp->pNext;
 			print = *temp;
 		}
-		
+
 	}
+	r += "\n";
+	return r;
 }
 
-void Memory::Segment::Print()
+
+
+string Memory::Segment::Print()
 {
-	cout << endl << "Размер сегмента: " << segmentSize << endl;
-	
+	string r = "";
+	r += "Размер сегмента: ";
+	r += std::to_string(segmentSize);
+	r += "\n";
 	if (statusFree)
-		cout << "Статус сегмента: Cвободен" << endl;
-	else 
-		cout << "Статус сегмента: Используется" << endl;
-
-	cout << "Сегмент: " << segment << endl;
+		r += "Статус сегмента: Cвободен";
+	else
+		r += "Статус сегмента: Используется";
+	r += "\n";
+	r += "Сегмент: ";
+	r += segment;
+	r += "\n";
+	return r;
 }
 
 
-void Memory::PopBack()
-{
-	Segment* temp = tail;
-	retSegment(*temp);
-	tail = temp->pPrev;
-	tail->pNext = tail;
-	
-	memorySize -= temp -> segmentSize;
-	delete temp;
-	segmentsCount--;
-}
 
-void Memory::PopBack1()
+string Memory::PopBack()
 {
 	Segment* temp = tail;
+	string r = "\n";
+	r += retSegment(*temp);
 	tail = temp->pPrev;
 	tail->pNext = tail;
 
 	memorySize -= temp->segmentSize;
 	delete temp;
 	segmentsCount--;
+	return r;
 }
-void Memory::PopFront()
+
+
+
+string Memory::PopFront()
 {
 	Segment* temp = head;
-	retSegment(*temp);
+	string r = "\n";
+	r += retSegment(*temp);
 	head = temp->pNext;
 	head->pPrev = head;
-	
+
 	memorySize -= temp->segmentSize;
 	delete temp;
 	segmentsCount--;
+	return r;
 }
-
-
-

@@ -35,38 +35,73 @@ int main()
 	memory.PushBack(512);
 	memory.PushBack(512);*/
 
-	//
-	//stack.PushFront(1);
-	//stack.PushFront(7);
-	//stack.PushFront(3);
-	//stack.PushFront(5);
-	//stack.PushFront(2);
-	//stack.Clear(0);
-	//stack.PushFront(9);
-	//stack.Delete();
-	//stack.Print();
 
 
-	//queue.PushFront(1);
-	//queue.PushFront(5);
-	//queue.PushFront(3);
-	//queue.PushFront(7);
-	//queue.Clear(0);
-	//queue.Delete();
-	//queue.Print();
+	//Стек
 
-	/*deque.PushFront(4);
-	deque.PushFront(7);
-	deque.PushBack(5);
+	/*cout << stack.PushFront(1) << endl;
+	cout << stack.PushFront(7) << endl;
+	cout << stack.PushFront(3) << endl;
+	cout << stack.PushFront(5) << endl;
+	cout << stack.PushFront(2) << endl;
+
+	system("pause");
+	system("cls");
+	
+	stack.Clear(0);
+	cout << stack.PushFront(9);
+	cout << stack.Delete();
+
+	system("pause");
+	system("cls");
+
+	cout << stack.Print();*/
+
+
+
+	//Очередь
+
+	cout << queue.PushFront(1) << endl;
+	cout << queue.PushFront(5) << endl;
+	cout << queue.PushFront(3) << endl;
+	cout << queue.PushFront(7) << endl;
+
+	system("pause");
+	system("cls");
+
+	queue.Clear(0);
+	cout << queue.Delete();
+
+	system("pause");
+	system("cls");
+
+	cout << queue.Print();
+
+
+
+	//Дек
+
+	/*cout << deque.PushFront(4) << endl;
+	cout << deque.PushFront(7) << endl;
+	cout << deque.PushBack(5) << endl;
+
+	system("pause");
+	system("cls");
+
 	deque.Clear(0);
-	deque.PopFront();
-	deque.PopBack();
-	deque.PopBack();
-	deque.PopBack();
-	deque.PopFront();
-	deque.PopBack();
-	deque.PopBack();
+	cout << deque.PopFront();
+	cout << deque.PopBack();
+	cout << deque.PopBack();
+	cout << deque.PopBack();
+	cout << deque.PopFront();
+	cout << deque.PopBack();
+	cout << deque.PopBack();
+
+	system("pause");
+	system("cls");
+
 	deque.Print();*/
+
 
 
 	return 0;

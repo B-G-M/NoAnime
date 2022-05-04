@@ -2,28 +2,39 @@
 #include "Queue.h"
 
 
+
 Queue::Queue()
 {
 }
+
+
 
 Queue::~Queue()
 {
 }
 
-void Queue::PushFront(int size)
+
+
+string Queue::PushFront(int size)
 {
-	List.PushFront(size);
+	return List.PushFront(size);
 }
 
-void Queue::Delete()
+
+
+string Queue::Delete()
 {
-	List.PopBack();
+	return List.PopBack();
 }
 
-void Queue::Print()
+
+
+string Queue::Print()
 {
-	List.Print();
+	return List.Print();
 }
+
+
 
 void Queue::Clear(int number)
 {

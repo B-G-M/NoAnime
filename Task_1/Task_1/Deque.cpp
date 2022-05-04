@@ -2,55 +2,71 @@
 #include "Memory.h"
 #include <iostream>
 
+
+
 Deque::Deque()
 {
 
 }
+
+
 
 Deque::~Deque()
 {
 
 }
 
-void Deque::PushFront(int size)
+
+
+string Deque::PushFront(int size)
 {
-	List.PushFront(size);
+	return List.PushFront(size);
 }
 
-void Deque::PushBack(int size)
+
+
+string Deque::PushBack(int size)
 {
-	List.PushBack(size);
+	return List.PushBack(size);
 }
 
-void Deque::PopBack()
+
+
+string Deque::PopBack()
 {
 	if (List.GetSegmentsCount() == 0)
 	{
-		Err();
-		return;
+		return Err();
 	}
-	List.PopBack();
+	return List.PopBack();
 }
 
-void Deque::PopFront()
+
+
+string Deque::PopFront()
 {
 	if (List.GetSegmentsCount() == 0)
 	{
-		Err();
-		return;
+		return Err();
 	}
-	List.PopFront();
+	return List.PopFront();
 }
 
-void Deque::Print()
+
+
+string Deque::Print()
 {
-	List.Print();
+	return List.Print();
 }
 
-void Deque::Err()
+
+
+string Deque::Err()
 {
-	cout <<endl<< "Невозможно удалить элемент из пустого дека" << endl;
+	return "Невозможно удалить элемент из пустого дека\n";
 }
+
+
 
 void Deque::Clear(int number)
 {

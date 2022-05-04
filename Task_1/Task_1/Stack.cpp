@@ -1,30 +1,43 @@
 #include "Stack.h"
 #include "Memory.h"
 
+
+
 Stack::Stack()
 {
 }
+
+
+
 Stack::~Stack()
 {
 }
 
-void Stack::Print()
+
+
+string Stack::Print()
 {
-	List.Print();
+	return List.Print();
 }
+
+
 
 void Stack::Clear(int number)
 {
 	List.ClearSegment(number);
 }
 
-void Stack::PushFront(int size)
+
+
+string Stack::PushFront(int size)
 {
-	List.PushFront(size);
+	return List.PushFront(size);
 }
 
-void Stack::Delete() 
+
+
+string Stack::Delete()
 {
-	List.PopFront();
+	return List.PopFront();
 }
 

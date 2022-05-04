@@ -1,7 +1,11 @@
 #pragma once
 #include "string"
 
+
+
 using namespace std;
+
+
 
 class Memory
 {
@@ -12,9 +16,9 @@ public:
 
 	string PushBack(int);
 	string PushFront(int);
-	void Print();
+	string Print();
 	void ClearSegment(int);
-	
+
 
 private:
 	class Segment
@@ -24,7 +28,7 @@ private:
 		~Segment();
 
 
-		void Print();
+		string Print();
 
 
 		int	segmentSize;
@@ -45,10 +49,9 @@ private:
 	Segment* head = nullptr;
 	Segment* tail = nullptr;
 
-public: 	
-	void retSegment(Segment print);
+public:
+	string retSegment(Segment print);
 	int GetSegmentsCount();
-	void PopBack();
-	void PopBack1();
-	void PopFront();
+	string PopBack();
+	string PopFront();
 };

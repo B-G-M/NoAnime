@@ -5,7 +5,7 @@ Memory::~Memory()
 {
 	for (int i = segmentsCount; i > 0 ; i--)
 	{
-		ClearSegment(i);
+		PopBack1();
 	}
 }
 
@@ -44,24 +44,25 @@ string Memory::PushBack(int size)
 
 void Memory::ClearSegment(int number)
 {
-	//Segment* temp = head;
-	for (int i = 0; i < segmentsCount; i++)
+	if (number > segmentsCount)
+		return;
+
+	Segment* temp = head;
+	for (int i = 0; i <= number; i++)
 	{
-		PopBack1();
-		/*if (i == number - 1)
+		if (i == number)
 			if (!temp->statusFree)
 			{
 				delete temp->segment;
 				temp->statusFree = true;
 			}
-		if(i < segmentsCount)
-			temp = temp->pNext;*/	
+		temp = temp->pNext;
 	}
 }
 
 void Memory::retSegment(Segment print)
 {
-	cout << endl << "Следующий новичок был кикнут из команды: " << endl;
+	cout << endl << "Следующий элемент был удален : " << endl;
 	print.Print();
 	cout << " ---------------------------------------";
 }

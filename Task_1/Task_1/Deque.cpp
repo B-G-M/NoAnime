@@ -51,3 +51,8 @@ void Deque::Err()
 {
 	cout <<endl<< "Невозможно удалить элемент из пустого дека" << endl;
 }
+
+void Deque::Clear(int number)
+{
+	List.ClearSegment(number);
+}

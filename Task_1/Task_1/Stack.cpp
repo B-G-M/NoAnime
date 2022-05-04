@@ -13,6 +13,11 @@ void Stack::Print()
 	List.Print();
 }
 
+void Stack::Clear(int number)
+{
+	List.ClearSegment(number);
+}
+
 void Stack::PushFront(int size)
 {
 	List.PushFront(size);

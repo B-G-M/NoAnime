@@ -25,3 +25,8 @@ void Queue::Print()
 	List.Print();
 }
 
+void Queue::Clear(int number)
+{
+	List.ClearSegment(number);
+}
+

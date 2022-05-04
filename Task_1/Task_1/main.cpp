@@ -35,27 +35,30 @@ int main()
 	memory.PushBack(512);
 	memory.PushBack(512);*/
 
-	
-	stack.PushFront(1);
-	stack.PushFront(7);
-	stack.PushFront(3);
-	stack.PushFront(5);
-	stack.PushFront(2);
-	stack.PushFront(9);
-	stack.Delete();
-	stack.Print();
+	//
+	//stack.PushFront(1);
+	//stack.PushFront(7);
+	//stack.PushFront(3);
+	//stack.PushFront(5);
+	//stack.PushFront(2);
+	//stack.Clear(0);
+	//stack.PushFront(9);
+	//stack.Delete();
+	//stack.Print();
 
 
-	queue.PushFront(1);
-	queue.PushFront(5);
-	queue.PushFront(3);
-	queue.PushFront(7);
-	queue.Delete();
-	queue.Print();
+	//queue.PushFront(1);
+	//queue.PushFront(5);
+	//queue.PushFront(3);
+	//queue.PushFront(7);
+	//queue.Clear(0);
+	//queue.Delete();
+	//queue.Print();
 
-	deque.PushFront(4);
+	/*deque.PushFront(4);
 	deque.PushFront(7);
 	deque.PushBack(5);
+	deque.Clear(0);
 	deque.PopFront();
 	deque.PopBack();
 	deque.PopBack();
@@ -63,7 +66,7 @@ int main()
 	deque.PopFront();
 	deque.PopBack();
 	deque.PopBack();
-	deque.Print();
+	deque.Print();*/
 
 
 	return 0;

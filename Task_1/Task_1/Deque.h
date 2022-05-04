@@ -13,6 +13,7 @@ public:
 	void PopFront();
 	void Print();
 	void Err();
+	void Clear(int number);
 
 private:
 	Memory List;

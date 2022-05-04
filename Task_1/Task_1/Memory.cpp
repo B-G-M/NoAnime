@@ -47,32 +47,25 @@ void Memory::ClearSegment(int number)
 	Segment* temp = head;
 	for (int i = 0; i < segmentsCount; i++)
 	{
-		if (i == number)
+		if (i == number-1)
 			if (!temp->statusFree)
 			{
 				delete temp->segment;
 				temp->statusFree = true;
 			}
-				
-		temp = temp->pNext;
+		if(i == segmentsCount - 1)
+			temp = temp->pNext;
 	}
 }
 
-void Memory::retSegment(int id)
+void Memory::retSegment(Segment print)
 {
 	Segment *temp = head;
 
-	for (int i = 0; i <= segmentsCount; i++)
-	{
-		if (i == id)
-		{
-			Segment& t = *temp;
-			cout << endl << "Следующий элемент был выбран: " << endl;
-			t.Print();
-			cout << " ---------------------------------------";
-		}
-		temp = temp->pNext;
-	}
+	Segment& t = *temp;
+	cout << endl << "Следующий элемент был выбран: " << endl;
+	t.Print();
+	cout << " ---------------------------------------";
 }
 
 Memory::Segment::Segment(int size)
@@ -148,58 +141,28 @@ void Memory::Segment::Print()
 }
 
 
-void Memory::ClearSegmentQueue(int number)
-{
-	Segment* temp = tail;
-	for (int i = segmentsCount; i >= 0; i--)
-	{
-		if (i == number)
-			if (!temp->statusFree)
-			{
-				delete temp->segment;
-				temp->statusFree = true;
-			}
-		temp = temp->pNext;
-	}
-}
-
 void Memory::PopBack()
 {
 	Segment* temp = tail;
-	for (int i = segmentsCount; i >= 1; i--)
-	{
-		if (!tail->statusFree)
-			ClearSegment(i);
-		temp = temp->pPrev;
-	}
+	retSegment(*temp);
+	tail = temp->pPrev;
+	tail->pNext = tail;
+	
+	memorySize -= temp -> segmentSize;
+	delete temp;
+	segmentsCount--;
 }
 void Memory::PopFront()
 {
 	Segment* temp = head;
-	for (int i = 1; i <= segmentsCount; i++)
-	{
-		if (!temp->statusFree)
-			ClearSegment(i);
-		temp = temp->pNext;
-	}
-}
-
-void Memory::retSegmentQueue(int id)
-{
-	Segment* temp = tail;
-
-	for (int i = segmentsCount; i >= 0; i--)
-	{
-		if (i == id)
-		{
-			Segment& t = *temp;
-			cout << endl << "Следующий элемент был выбран: " << endl;
-			t.Print();
-			cout << " ---------------------------------------";
-
-		}
-		temp = temp->pNext;
-	}
+	retSegment(*temp);
+	head = temp->pNext;
+	head->pPrev = head;
 	
+	memorySize -= temp->segmentSize;
+	delete temp;
+	segmentsCount--;
 }
+
+
 

@@ -46,9 +46,7 @@ private:
 	Segment* tail = nullptr;
 
 public: 	
-	void retSegment(int id);
-	void retSegmentQueue(int id);
-	void ClearSegmentQueue(int number);
+	void retSegment(Segment print);
 	void PopBack();
 	void PopFront();
 };

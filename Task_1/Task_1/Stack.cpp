@@ -20,7 +20,6 @@ void Stack::PushFront(int size)
 
 void Stack::Delete() 
 {
-	List.retSegment(0);
-	List.ClearSegment(0);
+	List.PopFront();
 }
 

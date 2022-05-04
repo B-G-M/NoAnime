@@ -47,6 +47,8 @@ private:
 
 public: 	
 	void retSegment(Segment print);
+	int GetSegmentsCount();
 	void PopBack();
+	void PopBack1();
 	void PopFront();
 };

@@ -11,8 +11,8 @@ public:
 	void PushBack(int size);
 	void PopBack();
 	void PopFront();
-	void Delete();
 	void Print();
+	void Err();
 
 private:
 	Memory List;

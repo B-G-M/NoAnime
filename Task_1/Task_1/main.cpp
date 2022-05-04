@@ -3,6 +3,7 @@
 #include "Memory.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "Deque.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ int main()
 	Memory memory;
 	Stack stack;
 	Queue queue;
+	Deque deque;
 
 	/*memory.PushBack(8);
 	memory.PushBack(3);
@@ -34,31 +36,35 @@ int main()
 	memory.PushBack(512);*/
 
 	
-	/*stack.PushFront(1);
+	stack.PushFront(1);
 	stack.PushFront(7);
 	stack.PushFront(3);
 	stack.PushFront(5);
 	stack.PushFront(2);
 	stack.PushFront(9);
 	stack.Delete();
-	stack.Print();*/
+	stack.Print();
 
 
 	queue.PushFront(1);
 	queue.PushFront(5);
 	queue.PushFront(3);
 	queue.PushFront(7);
-	queue.PushFront(6);
-	queue.PushFront(9);
-	queue.PushFront(2);
-	queue.PushFront(3);
-	queue.PushFront(3);
-	queue.PushFront(3);
-	queue.PushFront(3);
-	queue.PushFront(3);
-	queue.Delete();
 	queue.Delete();
 	queue.Print();
+
+	deque.PushFront(4);
+	deque.PushFront(7);
+	deque.PushBack(5);
+	deque.PopFront();
+	deque.PopBack();
+	deque.PopBack();
+	deque.PopBack();
+	deque.PopFront();
+	deque.PopBack();
+	deque.PopBack();
+	deque.Print();
+
 
 	return 0;
 }

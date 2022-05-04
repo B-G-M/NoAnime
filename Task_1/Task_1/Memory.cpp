@@ -44,28 +44,31 @@ string Memory::PushBack(int size)
 
 void Memory::ClearSegment(int number)
 {
-	Segment* temp = head;
+	//Segment* temp = head;
 	for (int i = 0; i < segmentsCount; i++)
 	{
-		if (i == number-1)
+		PopBack1();
+		/*if (i == number - 1)
 			if (!temp->statusFree)
 			{
 				delete temp->segment;
 				temp->statusFree = true;
 			}
-		if(i == segmentsCount - 1)
-			temp = temp->pNext;
+		if(i < segmentsCount)
+			temp = temp->pNext;*/	
 	}
 }
 
 void Memory::retSegment(Segment print)
 {
-	Segment *temp = head;
-
-	Segment& t = *temp;
-	cout << endl << "Следующий элемент был выбран: " << endl;
-	t.Print();
+	cout << endl << "Следующий новичок был кикнут из команды: " << endl;
+	print.Print();
 	cout << " ---------------------------------------";
+}
+
+int Memory::GetSegmentsCount()
+{
+	return segmentsCount;
 }
 
 Memory::Segment::Segment(int size)
@@ -122,9 +125,13 @@ void Memory::Print()
 
 	for (int i = 0; i < segmentsCount; i++)
 	{
-		print.Print(); 
-		temp = temp->pNext;
-		print = *temp;
+		print.Print();
+		if (i != segmentsCount - 1)
+		{
+			temp = temp->pNext;
+			print = *temp;
+		}
+		
 	}
 }
 
@@ -149,6 +156,17 @@ void Memory::PopBack()
 	tail->pNext = tail;
 	
 	memorySize -= temp -> segmentSize;
+	delete temp;
+	segmentsCount--;
+}
+
+void Memory::PopBack1()
+{
+	Segment* temp = tail;
+	tail = temp->pPrev;
+	tail->pNext = tail;
+
+	memorySize -= temp->segmentSize;
 	delete temp;
 	segmentsCount--;
 }

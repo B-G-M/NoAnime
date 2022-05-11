@@ -4,6 +4,7 @@
 #include "Stack.h"
 #include "Queue.h"
 #include "Deque.h"
+#include "Hash.h"
 
 using namespace std;
 
@@ -61,21 +62,21 @@ int main()
 
 	//Очередь
 
-	cout << queue.PushFront(1) << endl;
-	cout << queue.PushFront(5) << endl;
-	cout << queue.PushFront(3) << endl;
-	cout << queue.PushFront(7) << endl;
+	//cout << queue.PushFront(1) << endl;
+	//cout << queue.PushFront(5) << endl;
+	//cout << queue.PushFront(3) << endl;
+	//cout << queue.PushFront(7) << endl;
 
-	system("pause");
-	system("cls");
+	//system("pause");
+	//system("cls");
 
-	queue.Clear(0);
-	cout << queue.Delete();
+	//queue.Clear(0);
+	//cout << queue.Delete();
 
-	system("pause");
-	system("cls");
+	//system("pause");
+	//system("cls");
 
-	cout << queue.Print();
+	//cout << queue.Print();
 
 
 
@@ -102,8 +103,19 @@ int main()
 
 	deque.Print();*/
 
+	//Hash
 
+	Hash<string> hash(4);
 
+	hash.AddCell("Ананас");
+	hash.AddCell("Петрушка");
+	hash.AddCell("Банан");
+	hash.AddCell("Персик");
+
+	for (size_t i = 0; i < 8; i++)
+	{
+		hash.table[i];
+	}
 	return 0;
 }
 

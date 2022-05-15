@@ -137,7 +137,7 @@ string Hash<T>::Delete(string key)
 		{
 			temp->isDelete = true;
 			break;
-			k = "Объект удален из хэш таблицы"
+			k = "Объект удален из хэш таблицы";
 		}
 		if (temp->collision == nullptr)
 			break;

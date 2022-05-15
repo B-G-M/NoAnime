@@ -1,8 +1,4 @@
-﻿  main.cpp
-D:\NoAnime\Task_1\Task_1\Hash.h(94,7): warning C4101: word: неиспользованная локальная переменная
-D:\NoAnime\Task_1\Task_1\Hash.h(92): message : во время компиляции функции-члена класс шаблон "int Hash<std::string>::hashFunction(std::string)"
-D:\NoAnime\Task_1\Task_1\Hash.h(108): message : выполняется компиляция ссылки на экземпляр шаблон функции "int Hash<std::string>::hashFunction(std::string)"
-D:\NoAnime\Task_1\Task_1\Hash.h(45): message : во время компиляции функции-члена класс шаблон "Hash<std::string>::Hash(int)"
-D:\NoAnime\Task_1\Task_1\main.cpp(108): message : выполняется компиляция ссылки на экземпляр шаблон функции "Hash<std::string>::Hash(int)"
-D:\NoAnime\Task_1\Task_1\main.cpp(108): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Hash<std::string>"
-  Task_1.vcxproj -> D:\NoAnime\Task_1\x64\Debug\Task_1.exe
+﻿  FSM.cpp
+  main.cpp
+  Создание кода...
+  Task_1.vcxproj -> C:\Users\Admin\Documents\GitHub\NoAnime\Task_1\x64\Debug\Task_1.exe

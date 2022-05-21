@@ -9,11 +9,6 @@ public:
 	Memory() {};
 	~Memory();
 
-	string PushBack(int);
-	string PushFront(int);
-	string Print();
-	void ClearSegment(int);
-
 private:
 	class Segment
 	{
@@ -41,8 +36,17 @@ private:
 	Segment* tail = nullptr;
 
 public:
-	string retSegment(Segment print);
-	int GetSegmentsCount();
+
+	string PushBack(int);
+	string PushFront(int);
 	string PopBack();
 	string PopFront();
+	Segment* GetNextPointer();
+	Segment* GetPrevPointer();
+
+	string Print();
+	void ClearSegment(int);
+	string retSegment(Segment print);
+	int GetSegmentsCount();
+
 };

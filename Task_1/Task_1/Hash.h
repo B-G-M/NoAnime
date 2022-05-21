@@ -9,11 +9,14 @@ class Hash
 public:
 	Hash(int hashSize);
 	~Hash();
-	int hashFunction(string key);
+	
 	int AddCell(string key, T data = T());
-	string Delete(string key);
+	bool InHash(string key);
 
 private:
+	int _HashFunction(string key);
+	string _Delete(string key);
+
 	template<typename T>
 	class Cell
 	{
@@ -88,7 +91,7 @@ Hash<T>::~Hash()
 }
 
 template<typename T>
-int Hash<T>::hashFunction(string key)
+int Hash<T>::_HashFunction(string key)
 {
 	int id = 0;
 	for (size_t i = 0; i < key.length(); i++)
@@ -104,10 +107,10 @@ int Hash<T>::hashFunction(string key)
 template<typename T>
 int Hash<T>::AddCell(string key, T data)
 {
-	int id = hashFunction(key);
+	int id = _HashFunction(key);
 	Cell<T>* temp = table[id];
 
-	if (table[id]->isDelete)
+	if (temp->isDelete)
 	{
 		table[id] = new Cell<T>(key, data);
 		return id;
@@ -124,11 +127,29 @@ int Hash<T>::AddCell(string key, T data)
 	return id;
 }
 
+template<typename T>
+inline bool Hash<T>::InHash(string key)
+{
+	for (size_t i = 0; i < this.size; i++)
+	{
+		Cell<T>* temp = table[id];
+
+		do
+		{
+			if (temp->key == key)
+				return true;
+			temp = temp->collision;
+		} 
+		while (temp->collision != nullptr);
+	}
+	return false;
+}
+
 
 template<typename T>
-string Hash<T>::Delete(string key)
+string Hash<T>::_Delete(string key)
 {
-	int id = hashFunction(key);
+	int id = _HashFunction(key);
 	Cell<T>* temp = table[id];
 	string k = "Объект не удален из хэш таблицы";
 	while (true)

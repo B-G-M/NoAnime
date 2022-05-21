@@ -36,3 +36,18 @@ inline string Lexer::GetText()
 	file.close();
 	return string();
 }
+
+string* Lexer::GetStates()
+{
+	return _sta;
+}
+
+string* Lexer::GetAlphbet()
+{
+	return nullptr;
+}
+
+string** Lexer::GetTransitions()
+{
+	return nullptr;
+}

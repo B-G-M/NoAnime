@@ -10,8 +10,13 @@ public:
 	~Lexer();
 	
 	string GetText();
-
+	string* GetStates();
+	string* GetAlphbet();
+	string** GetTransitions();
 private:
+	string* _states;
+	string* _alphbet;
+	string** _transitions;
 	
 };
 

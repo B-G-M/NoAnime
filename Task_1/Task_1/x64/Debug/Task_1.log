@@ -1,12 +1,6 @@
-﻿  Deque.cpp
-  FSM.cpp
-  The contents of <optional> are available only with C++17 or later.
-  Lexer.cpp
+﻿  FSM.cpp
   The contents of <optional> are available only with C++17 or later.
   main.cpp
   The contents of <optional> are available only with C++17 or later.
-  Memory.cpp
-  Queue.cpp
-  Stack.cpp
   Создание кода...
-  Task_1.vcxproj -> D:\NoAnime\Task_1\x64\Debug\Task_1.exe
+  Task_1.vcxproj -> C:\Users\Admin\Documents\GitHub\NoAnime\Task_1\x64\Debug\Task_1.exe

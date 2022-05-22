@@ -120,8 +120,10 @@ int main()
 	//	hash.table[i];
 	//}
 	Lexer lexer;
+	lexer.StringAnalyzer();
 	FSM fsm(lexer);
 	fsm.test();
+	
 
 	return 0;
 }

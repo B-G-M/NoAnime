@@ -8,14 +8,13 @@ using namespace std;
 
 list <string> Lexer::FileReader()
 {
-	ifstream file;
-	string path = "ForLexer.txt";
+	ifstream file("C:\\ForLexer.txt");
 	list <string> input;
 	string str;
-	file.open(path);
+	
 	if (file.is_open())
 	{
-		while (file.eof())
+		while (!file.eof())
 		{
 			getline(file, str);
 			input.push_back(str);

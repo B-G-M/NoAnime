@@ -30,6 +30,10 @@ public:
 	{
 		table = new list<Cell<T>>[size];
 	};
+	Hash(int size)
+	{
+		table = new list<Cell<T>>[size];
+	}
 	~Hash()
 	{
 		delete[] table;
@@ -39,6 +43,7 @@ public:
 	list<Cell<T>>* table;
 
 	int GetSize() { return size; };
+	void AddState(int i, string key, T data);
 	int AddCell(string key, T data = T());
 	bool InHash(string key);
 	bool InHash(string key, T data);
@@ -80,6 +85,15 @@ inline void Hash<T>::_ReSize()
 	}
 	delete[] table;
 	table = temp;
+}
+
+template<typename T>
+void Hash<T>::AddState(int id, string key, T data)
+{
+	Cell<T> temp(key, data);
+
+	table[id].push_back(temp);
+	_cellCount++;
 }
 
 template<typename T>
@@ -154,6 +168,6 @@ inline T Hash<T>::GetData(int id, string key)
 		if (key == cell.GetKey())
 			return cell.GetData();
 	}
-	string ex = "Для полученного ID({}) не найден ключ({})", id, key;
+	//string ex = "Для полученного ID({}) не найден ключ({})", id, key;
 	throw exception(("Для полученного ID({}) не найден ключ({})", id, key).data());
 }

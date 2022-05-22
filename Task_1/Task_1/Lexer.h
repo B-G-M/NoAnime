@@ -1,29 +1,32 @@
 #pragma once
 #include <string>
 #include <list>
+#include<vector>
 #include "Hash.h"
 using namespace std;
 
 class Lexer
 {
 public:
-	Lexer();
-	~Lexer();
+	Lexer() : _alphabet(100), _finalStates(100) {};
+	~Lexer() {};
 	
 	list<string> FileReader();
-	string* GetStates();
-	string* GetAlphabet();
+	int GetStatesCount();
+	int GetStartState();
+	vector<string> GetText();
+	vector<string> GetAlphabet();
+	vector<int> GetFinalStates();
 	Hash<int> GetTransitions();
 	void StringAnalyzer();
 private:
-	int _statesCount;
-	string _text;
-	string* _alphabet;
+	int _statesCount = 0;
+	int _startState = 0;
+	vector<string> _text;
+	vector<string> _alphabet;
+	vector<int> _finalStates;
 	Hash<int> _transitions;
-	int _sizeAlphabet;
-	int _sizeFinalStates;
-	int* _finalStates;
-	int _startState;
+	
 	
 	
 };

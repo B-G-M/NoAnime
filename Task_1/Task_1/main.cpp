@@ -4,7 +4,9 @@
 #include "Stack.h"
 #include "Queue.h"
 #include "Deque.h"
+#include "Lexer.h"
 #include "Hash.h"
+#include "FSM.h"
 
 using namespace std;
 
@@ -105,18 +107,22 @@ int main()
 
 	//Hash
 
-	Hash<string> hash;
+	//Hash<string> hash;
 
-	hash.AddCell("Ананас");
-	hash.AddCell("Петрушка");
-	hash.AddCell("Банан");
-	hash.AddCell("Персик");
-	hash.DeleteCell("Ананас");
-	hash.InHash("Петрушка");
-	for (size_t i = 0; i < 8; i++)
-	{
-		hash.table[i];
-	}
+	//hash.AddCell("Ананас");
+	//hash.AddCell("Петрушка");
+	//hash.AddCell("Банан");
+	//hash.AddCell("Персик");
+	//hash.DeleteCell("Ананас");
+	//hash.InHash("Петрушка");
+	//for (size_t i = 0; i < 8; i++)
+	//{
+	//	hash.table[i];
+	//}
+	Lexer lexer;
+	FSM fsm(lexer);
+	fsm.test();
+
 	return 0;
 }
 

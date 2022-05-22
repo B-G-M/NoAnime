@@ -5,14 +5,6 @@
 #include <list>
 using namespace std;
 
-Lexer::Lexer()
-{
-}
-
-Lexer::~Lexer()
-{
-}
-
 
 list <string> Lexer::FileReader()
 {
@@ -36,16 +28,30 @@ list <string> Lexer::FileReader()
 	return input;
 }
 
-string* Lexer::GetStates()
+int Lexer::GetStatesCount()
 {
 
-	/*return _sta;*/
+	return _statesCount;
 }
 
-string* Lexer::GetAlphabet()
+int Lexer::GetStartState()
 {
+	return _startState;
+}
 
+vector<string> Lexer::GetText()
+{
+	return _text;
+}
+
+vector<string> Lexer::GetAlphabet()
+{
 	return _alphabet;
+}
+
+vector<int> Lexer::GetFinalStates()
+{
+	return _finalStates;
 }
 
 Hash<int> Lexer::GetTransitions()
@@ -75,7 +81,7 @@ void Lexer::StringAnalyzer()
 					{
 						temp += str[i];
 					}
-					_alphabet[j] = temp;
+					_alphabet.push_back(temp);
 					j++;
 					temp = "";
 				}
@@ -135,7 +141,7 @@ void Lexer::StringAnalyzer()
 					}
 					try
 					{
-						_finalStates[j] = stoi(temp);
+						_finalStates.push_back(stoi(temp));
 						j++;
 					}
 					catch (exception& ex)
@@ -149,34 +155,62 @@ void Lexer::StringAnalyzer()
 			else if (temp == "transitions:")
 			{
 				i++;
+				int id = 0;
+				int data = 0;
+				string key;
 				for (; i < str.size(); i++)
 				{
 					i++;
 					temp = "";
 					for (; i < str.size(); i++)
 					{
-						if (str[i] != '(') 
-						{
-							//записываем состояние
-						}
-						else
-						{
+						if (str[i] == '(')
+							break;
+						temp += str[i];
 
-						}
 					}
+					id = stoi(temp);
+					temp = "";
+					i++;
+					for (; i < str.size(); i++)
+					{
+						if (str[i] == ')')
+							break;
+						if (str[i] == ':')
+						{
+							i++;
+							for (; i < str.size(); i++)
+							{
+								if (str[i] == ',')
+									break;
+								temp += str[i];
+							}
+							data = stoi(temp);
+							temp = "";
+							i++;
+						}
+						key += str[i];
+					}
+					_transitions.AddState(id, key, data);
 				}
+				temp = "";
 			}
 			else if (temp == "text:")
 			{
 				i++;
-				temp = "";
 				for (; i < str.size(); i++)
 				{	
+					temp = "";
 					for (; i < str.size(); i++)
 					{
-						_text += str[i];
+						if (str[i] == ',')
+							break;
+						temp += str[i];
 					}
+					i++;
+					_text.push_back(temp);
 				}
+				temp = "";
 			}
 		}
 	}

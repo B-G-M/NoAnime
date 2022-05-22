@@ -1,25 +1,12 @@
 ﻿  Deque.cpp
   FSM.cpp
   The contents of <optional> are available only with C++17 or later.
-C:\Users\Admin\Documents\GitHub\NoAnime\Task_1\Task_1\Hash.h(157,1): error C2082: переопределение формального параметра "id"
-C:\Users\Admin\Documents\GitHub\NoAnime\Task_1\Task_1\Hash.h(148): message : во время компиляции функции-члена класс шаблон "T Hash<T>::GetData(int,std::string)"
-          with
-          [
-              T=int
-          ]
-C:\Users\Admin\Documents\GitHub\NoAnime\Task_1\Task_1\FSM.cpp(47): message : выполняется компиляция ссылки на экземпляр шаблон функции "T Hash<T>::GetData(int,std::string)"
-          with
-          [
-              T=int
-          ]
-C:\Users\Admin\Documents\GitHub\NoAnime\Task_1\Task_1\Lexer.h(20): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "Hash<int>"
-C:\Users\Admin\Documents\GitHub\NoAnime\Task_1\Task_1\Hash.h(157,1): error C2082: переопределение формального параметра "key"
   Lexer.cpp
   The contents of <optional> are available only with C++17 or later.
-C:\Users\Admin\Documents\GitHub\NoAnime\Task_1\Task_1\Lexer.cpp(42,9): error C2065: _sta: необъявленный идентификатор
   main.cpp
   The contents of <optional> are available only with C++17 or later.
   Memory.cpp
   Queue.cpp
   Stack.cpp
   Создание кода...
+  Task_1.vcxproj -> D:\NoAnime\Task_1\x64\Debug\Task_1.exe

@@ -11,12 +11,16 @@ public:
 	string test();
 
 private:
-	Hash<string> _states;
-	string _currenttState;
-	string* _finalStates;
-	string** _transitions;
+	//int* _states;
+	int _sizeAlphabet;
+	int _sizeFinalStates;
+	string* _alphabet;
+	int* _finalStates;
+	int _currenttState;
+	
+	Hash<int> _transitions;
 
-	bool _CheckExistTransition(string state, string word);
+	bool _CheckExistTransition(int state, string word);
 	void _ChangeState(string word);
 
 };

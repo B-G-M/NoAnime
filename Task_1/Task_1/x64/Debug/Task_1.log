@@ -1,2 +1,10 @@
-﻿  main.cpp
+﻿  Deque.cpp
+  FSM.cpp
+  Lexer.cpp
+  main.cpp
+  The contents of <optional> are available only with C++17 or later.
+  Memory.cpp
+  Queue.cpp
+  Stack.cpp
+  Создание кода...
   Task_1.vcxproj -> D:\NoAnime\Task_1\x64\Debug\Task_1.exe

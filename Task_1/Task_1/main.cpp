@@ -105,13 +105,14 @@ int main()
 
 	//Hash
 
-	Hash<string> hash(4);
+	Hash<string> hash;
 
 	hash.AddCell("Ананас");
 	hash.AddCell("Петрушка");
 	hash.AddCell("Банан");
 	hash.AddCell("Персик");
-
+	hash.DeleteCell("Ананас");
+	hash.InHash("Петрушка");
 	for (size_t i = 0; i < 8; i++)
 	{
 		hash.table[i];

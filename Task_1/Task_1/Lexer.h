@@ -15,7 +15,7 @@ public:
 	string** GetTransitions();
 private:
 	string* _states;
-	string* _alphbet;
+	string* _alphabet;
 	string** _transitions;
 	
 };

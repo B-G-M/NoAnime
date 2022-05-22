@@ -41,8 +41,6 @@ public:
 	string PushFront(int);
 	string PopBack();
 	string PopFront();
-	Segment* GetNextPointer();
-	Segment* GetPrevPointer();
 
 	string Print();
 	void ClearSegment(int);

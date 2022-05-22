@@ -3,38 +3,48 @@
 
 FSM::FSM(Lexer lexer)
 {
-	this->_states = ;
-	this->_currenttState = startState;
-	this->_finalStates = finalStates;
-	this->_transitions = transitions;
+	
 }
-
-
 
 
 FSM::~FSM()
 {
+	//delete[] _states;
+	delete[] _alphabet;
+	delete[] _finalStates;
+}
+
+string FSM::test()
+{
+	for (size_t i = 0; i < _sizeAlphabet; i++)
+	{
+		_ChangeState(_alphabet[i]);
+	}
+	for (size_t i = 0; i < _sizeFinalStates; i++)
+	{
+		if (_currenttState == _finalStates[i])
+			return "ok";
+	}
+	throw exception("Хуета");
 
 }
 
-bool FSM::_CheckExistTransition(string state, string word)
+bool FSM::_CheckExistTransition(int state, string word)
 {
-	for (size_t i = 0; i < _transitions; i++)
-	{
-
-	}
-
-	return(this->_transitions[state] && this->_transitions[state][word]);
+	//string ex = "Некорректная лексема" + word;
+	if (_transitions.InHash(word) == false)
+		throw exception(("Некорректная лексема: {}", word).data());
+	//ex = "Некорректное состояние" + state;
+	if (_transitions.InHash(word, state) == false)
+		return false;
+		//throw exception(("Некорректное состояние: {}",to_string(state)).data());
+	return true;
 }
 
 void FSM::_ChangeState(string word)
 {
-	if (this->_CheckExistTransition(this->_currenttState, word))
-	{
-		this->_currenttState = this->_transitions[this->_currenttState][word];
-	}
+	if (_CheckExistTransition(_currenttState, word))	
+		_currenttState = _transitions.GetData(_currenttState, word);
 	else
-	{
-		throw exception("Не существует перехода из текущего состояния");
-	}
+		throw exception(("Не существует перехода из состояния {} для {}", to_string(_currenttState), word).data());
 }

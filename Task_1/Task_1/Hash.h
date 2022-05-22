@@ -1,94 +1,55 @@
 #pragma once
 #include <string>
-#include <vector>
+#include <list>
+#include <optional>
+
 using namespace std;
+
+template<typename T>
+class Cell
+{
+public:
+	Cell(string key, T data = T())
+	{
+		this->_data = data;
+		this->_key = key;
+	};
+	~Cell() {};
+	T GetData(){ return _data; }
+	string GetKey(){ return _key; }
+private:
+	T _data;
+	string _key;
+};
 
 template<typename T>
 class Hash
 {
 public:
-	Hash(int hashSize);
-	~Hash();
-	
+	Hash()
+	{
+		table = new list<Cell<T>>[size];
+	};
+	~Hash()
+	{
+		delete[] table;
+	};
+
+	int size = 15;
+	list<Cell<T>>* table;
+
+	int GetSize() { return size; };
 	int AddCell(string key, T data = T());
 	bool InHash(string key);
-
+	bool InHash(string key, T data);
+	string DeleteCell(string key); 
+	T GetData(int id, string key);
 private:
+	int _cellCount = 0;
+	void _ReSize();
 	int _HashFunction(string key);
-	string _Delete(string key);
-
-	template<typename T>
-	class Cell
-	{
-	public:
-		Cell()
-		{
-			this->collision = nullptr;
-			this->isDelete = true;
-		};
-		Cell(string key, T data = T())
-		{
-			this->data = data;
-			this->key = key;
-			this->collision = nullptr;
-			this->isDelete = false;
-		};
-		T data;
-		string key;
-		Cell<T>* collision;
-		bool isDelete;
-	};
-public:
-	Cell<T>** table;
-	int size;
+	
 };
-
-template<typename T>
-Hash<T>::Hash(int hashSize)
-{
-	size = hashSize * 2;
-	table = new Cell<T>*[size]{};
-	for (size_t i = 0; i < size; i++)
-	{
-		table[i] = new Cell<T>();
-	}
-}
-
-template<typename T>
-Hash<T>::~Hash()
-{
-	Cell<T>* temp;
-	Cell<T>* prevTemp;
-	int i = 0;
-	while (true)
-	{
-		prevTemp = table[i];
-		while (prevTemp->collision == nullptr)
-		{
-			if (i == size)
-				break;
-			i++;
-		}
-		if (i == size)
-			break;
-
-		temp = table[i]->collision;
-		prevTemp = table[i];
-
-		while (true)
-		{
-			if (temp->collision == nullptr)
-			{
-				prevTemp->collision = nullptr;
-				delete temp;
-				break;
-			}
-			temp = temp->collision;
-			prevTemp = prevTemp->collision;
-		}
-	}
-	delete[]table;
-}
 
 template<typename T>
 int Hash<T>::_HashFunction(string key)
@@ -105,65 +66,94 @@ int Hash<T>::_HashFunction(string key)
 }
 
 template<typename T>
+inline void Hash<T>::_ReSize()
+{
+	size *= 2;
+	list<Cell<T>>* temp = new list<Cell<T>>[size];
+
+	for (size_t i = 0; i < size / 2; i++)
+	{
+		for (Cell<T> cell : table[i])
+		{
+			temp[_HashFunction(cell.GetKey())].push_back(cell);
+		}
+	}
+	delete[] table;
+	table = temp;
+}
+
+template<typename T>
 int Hash<T>::AddCell(string key, T data)
 {
-	int id = _HashFunction(key);
-	Cell<T>* temp = table[id];
+	if (_cellCount == size * size)
+		_ReSize();
 
-	if (temp->isDelete)
-	{
-		table[id] = new Cell<T>(key, data);
-		return id;
-	}
-	while (true)
-	{
-		if (temp->collision == nullptr || temp->isDelete)
-		{
-			temp->collision = new Cell<T>(key, data);
-			break;
-		}
-		temp = temp->collision;
-	}
+	int id = _HashFunction(key);
+	Cell<T> temp(key, data);
+
+	table[id].push_back(temp);
+	_cellCount++;
 	return id;
 }
 
 template<typename T>
 inline bool Hash<T>::InHash(string key)
 {
-	for (size_t i = 0; i < this.size; i++)
-	{
-		Cell<T>* temp = table[id];
+	int id = _HashFunction(key);
 
-		do
-		{
-			if (temp->key == key)
-				return true;
-			temp = temp->collision;
-		} 
-		while (temp->collision != nullptr);
+	for (auto cell = table[id].begin(); cell != table[id].end(); cell++)
+	{
+		if (key == cell->GetKey())
+			return true;
+		break;
+	}
+	return false;
+}
+
+template<typename T>
+inline bool Hash<T>::InHash(string key, T data)
+{
+	int id = _HashFunction(key);
+
+	for (auto cell = table[id].begin(); cell != table[id].end(); cell++)
+	{
+		if (key == cell->GetKey() && data == cell->GetData())
+			return true;
+		break;
 	}
 	return false;
 }
 
 
 template<typename T>
-string Hash<T>::_Delete(string key)
+string Hash<T>::DeleteCell(string key)
 {
 	int id = _HashFunction(key);
-	Cell<T>* temp = table[id];
-	string k = "Объект не удален из хэш таблицы";
-	while (true)
-	{
-		if (key == temp->key)
-		{
-			temp->isDelete = true;
-			break;
-			k = "Объект удален из хэш таблицы";
-		}
-		if (temp->collision == nullptr)
-			break;
+	string delLog;
 
-		temp = temp->collision;
+	for (auto cell = table[id].begin(); cell != table[id].end(); cell++)
+	{
+		if (key == cell->GetKey())
+		{
+			table[id].erase(cell);
+			_cellCount--;
+			return delLog = "Объект удален из хэш таблицы";
+		}
 	}
-	return k;
+	return delLog = "Объект не удален из хэш таблицы";
+}
+
+template<typename T>
+inline T Hash<T>::GetData(int id, string key)
+{
+	if (id > size)
+		throw exception("Out of range");
+
+	for (Cell<T> cell : table[id])
+	{
+		if (key == cell.GetKey())
+			return cell.GetData();
+	}
+	string ex = "Для полученного ID({}) не найден ключ({})", id, key;
+	throw exception(("Для полученного ID({}) не найден ключ({})", id, key).data());
 }

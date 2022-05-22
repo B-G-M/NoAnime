@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-#include "Queue.h"
+#include <list>
+#include "Hash.h"
 using namespace std;
 
 class Lexer
@@ -9,14 +10,21 @@ public:
 	Lexer();
 	~Lexer();
 	
-	string GetText();
+	list<string> FileReader();
 	string* GetStates();
-	string* GetAlphbet();
-	string** GetTransitions();
+	string* GetAlphabet();
+	Hash<int> GetTransitions();
+	void StringAnalyzer();
 private:
-	string* _states;
+	int _statesCount;
+	string _text;
 	string* _alphabet;
-	string** _transitions;
+	Hash<int> _transitions;
+	int _sizeAlphabet;
+	int _sizeFinalStates;
+	int* _finalStates;
+	int _startState;
+	
 	
 };
 

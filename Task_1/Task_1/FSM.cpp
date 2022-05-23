@@ -11,7 +11,7 @@ FSM::FSM()
 	_finalStates = lexer.GetFinalStates();
 	_transitions = lexer.GetTransitions();
 	_text = lexer.GetText();
-	path += "start: ";
+	path += "start -> ";
 }
 
 
@@ -46,9 +46,9 @@ bool FSM::_CheckExistTransition(int state, string word)
 
 bool FSM::_CheckWordInAlphabet(string word)
 {
-	for (size_t i = 0; i < _text.size(); i++)
+	for (size_t i = 0; i < _alphabet.size(); i++)
 	{
-		if (word == _text[i])
+		if (word == _alphabet[i])
 			return true;
 	}
 	throw exception(("Некорректная лексема: "+ word).data()); 
@@ -59,7 +59,7 @@ void FSM::_ChangeState(string word)
 
 	if (_CheckExistTransition(_currentState, word))
 	{
-		path += to_string(_currentState) + "->";
+		path += "s:" + to_string(_currentState) + "|w:" + word + " -> ";
 		_currentState = _transitions->GetData(_currentState, word);
 	}
 	else

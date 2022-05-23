@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <list>
+
 using namespace std;
 
 
@@ -84,14 +85,13 @@ void Lexer::StringAnalyzer()
 				temp = "";
 				for (;i < str.size(); i++)
 				{
-					if (str[i] == ',')
-						continue;
 					for (; i < str.size(); i++)
 					{
+						if (str[i] == ',')
+							break;
 						temp += str[i];
 					}
 					_alphabet.push_back(temp);
-					j++;
 					temp = "";
 				}
 				j = 0;
@@ -102,20 +102,18 @@ void Lexer::StringAnalyzer()
 				temp = "";
 				for (; i < str.size(); i++)
 				{
-					for (; i < str.size(); i++)
-					{
-						temp += str[i];
-					}
-					try 
-					{
-						_statesCount = stoi(temp);
-					}
-					catch (exception &ex)
-					{
-						throw ex.what();
-					}
-					temp = "";
+					temp += str[i];
 				}
+				try 
+				{
+					_statesCount = stoi(temp);
+				}
+				catch (exception &ex)
+				{
+					cout << ex.what();
+					abort();
+				}
+				temp = "";
 			}
 			else if (temp == "startState:")
 			{
@@ -123,22 +121,20 @@ void Lexer::StringAnalyzer()
 				temp = "";
 				for (; i < str.size(); i++)
 				{
-					for (; i < str.size(); i++)
-					{
-						temp += str[i];
-					}
-					try
-					{
-						_startState = stoi(temp);
-					}
-					catch (exception& ex)
-					{
-						throw ex.what();
-					}
-					temp = "";
+					temp += str[i];
 				}
+				try
+				{
+					_startState = stoi(temp);
+				}
+				catch (exception& ex)
+				{
+					cout << ex.what();
+					abort();
+				}
+				temp = "";
 			}
-			else if (temp == "finalState:")
+			else if (temp == "finalStates:")
 			{
 				i++;
 				temp = "";
@@ -146,20 +142,21 @@ void Lexer::StringAnalyzer()
 				{
 					for (; i < str.size(); i++)
 					{
+						if (str[i] == ',')
+							break;
 						temp += str[i];
 					}
 					try
 					{
 						_finalStates.push_back(stoi(temp));
-						j++;
 					}
 					catch (exception& ex)
 					{
-						throw ex.what();
+						cout << ex.what();
+						abort();
 					}
 					temp = "";
 				}
-				j = 0;
 			}
 			else if (temp == "transitions:")
 			{

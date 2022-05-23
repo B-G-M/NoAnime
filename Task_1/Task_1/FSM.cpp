@@ -1,41 +1,46 @@
 #include "FSM.h"
 #include "Lexer.h"
+#include <iostream>
+using namespace std;
 
-FSM::FSM(Lexer lexer)
+FSM::FSM()
 {
+	lexer.StringAnalyzer();
 	_alphabet = lexer.GetAlphabet();
-	_currenttState = lexer.GetStartState();
+	_currentState = lexer.GetStartState();
 	_finalStates = lexer.GetFinalStates();
 	_transitions = lexer.GetTransitions();
 	_text = lexer.GetText();
+	path += "start: ";
 }
 
 
 string FSM::test()
 {
-	for (size_t i = 0; i < _text.size(); i++)
+	try
 	{
-		_CheckWordInAlphabet(_text[i]);
-		_ChangeState(_text[i]);
+		for (size_t i = 0; i < _text.size(); i++)
+		{
+			_CheckWordInAlphabet(_text[i]);
+			_ChangeState(_text[i]);
+		}
+		for (size_t i = 0; i < _finalStates.size(); i++)
+		{
+			if (_currentState == _finalStates[i])
+				return path + "end";
+		}
+		throw exception("Не достигнуто конечное состояние");
 	}
-	for (size_t i = 0; i < _finalStates.size(); i++)
+	catch (const std::exception& ex)
 	{
-		if (_currenttState == _finalStates[i])
-			return "ok";
+		return ex.what();
 	}
-	throw exception("Не достигнуто конечное состояние");
-
 }
 
 bool FSM::_CheckExistTransition(int state, string word)
 {
-	//string ex = "Некорректная лексема" + word;
-	if (_transitions.InHash(word) == false)
-		throw exception(("Некорректная лексема: {}", word).data());
-	//ex = "Некорректное состояние" + state;
-	if (_transitions.InHash(word, state) == false)
+	if (_transitions->InHash(state,word) == false)
 		return false;
-		//throw exception(("Некорректное состояние: {}",to_string(state)).data());
 	return true;
 }
 
@@ -46,13 +51,17 @@ bool FSM::_CheckWordInAlphabet(string word)
 		if (word == _text[i])
 			return true;
 	}
-	throw exception(("Некорректная лексема: {}", word).data()); 
+	throw exception(("Некорректная лексема: "+ word).data()); 
 }
 
 void FSM::_ChangeState(string word)
 {
-	if (_CheckExistTransition(_currenttState, word))	
-		_currenttState = _transitions.GetData(_currenttState, word);
+
+	if (_CheckExistTransition(_currentState, word))
+	{
+		path += to_string(_currentState) + "->";
+		_currentState = _transitions->GetData(_currentState, word);
+	}
 	else
-		throw exception(("Не существует перехода из состояния {} для {}", to_string(_currenttState), word).data());
+		throw exception(("Не существует перехода из состояния " + to_string(_currentState) + " для "+ word).data());
 }

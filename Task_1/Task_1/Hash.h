@@ -41,12 +41,11 @@ public:
 
 	int size = 15;
 	list<Cell<T>>* table;
-
+	list<Cell<T>> operator[] (int index);
 	int GetSize() { return size; };
 	void AddState(int i, string key, T data);
 	int AddCell(string key, T data = T());
-	bool InHash(string key);
-	bool InHash(string key, T data);
+	bool InHash(int id,string key);
 	string DeleteCell(string key); 
 	T GetData(int id, string key);
 private:
@@ -88,6 +87,12 @@ inline void Hash<T>::_ReSize()
 }
 
 template<typename T>
+inline list<Cell<T>> Hash<T>::operator[](int index)
+{
+	return table[index];
+}
+
+template<typename T>
 void Hash<T>::AddState(int id, string key, T data)
 {
 	Cell<T> temp(key, data);
@@ -111,29 +116,15 @@ int Hash<T>::AddCell(string key, T data)
 }
 
 template<typename T>
-inline bool Hash<T>::InHash(string key)
+bool Hash<T>::InHash(int id, string key)
 {
-	int id = _HashFunction(key);
-
 	for (auto cell = table[id].begin(); cell != table[id].end(); cell++)
 	{
 		if (key == cell->GetKey())
+		{
 			return true;
-		break;
-	}
-	return false;
-}
-
-template<typename T>
-inline bool Hash<T>::InHash(string key, T data)
-{
-	int id = _HashFunction(key);
-
-	for (auto cell = table[id].begin(); cell != table[id].end(); cell++)
-	{
-		if (key == cell->GetKey() && data == cell->GetData())
-			return true;
-		break;
+			break;
+		}
 	}
 	return false;
 }
@@ -169,5 +160,5 @@ inline T Hash<T>::GetData(int id, string key)
 			return cell.GetData();
 	}
 	//string ex = "Для полученного ID({}) не найден ключ({})", id, key;
-	throw exception(("Для полученного ID({}) не найден ключ({})", id, key).data());
+	throw exception(("Для полученного ID: " + to_string(id) + " не найден ключ: "+ key).data());
 }

@@ -7,18 +7,19 @@
 class FSM 
 {
 public:
-	FSM(Lexer lexer);
+	FSM();
 	~FSM(){};
 
 	string test();
 
 private:
+	Lexer lexer;
 	vector<string> _text;
 	vector<string> _alphabet;
 	vector<int> _finalStates;
-	int _currenttState;
-	
-	Hash<int> _transitions;
+	int _currentState;
+	string path;
+	Hash<int>* _transitions;
 
 	bool _CheckExistTransition(int state, string word);
 	bool _CheckWordInAlphabet(string word);

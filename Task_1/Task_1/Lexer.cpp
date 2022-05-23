@@ -1,30 +1,41 @@
 #include "Lexer.h"
 #include <iostream>
+#include <stdlib.h>
 #include <fstream>
 #include <string>
 #include <list>
 using namespace std;
 
 
-list <string> Lexer::FileReader()
+Lexer::Lexer()
 {
-	ifstream file("C:\\ForLexer.txt");
-	list <string> input;
+	FileReader();
+}
+
+void Lexer::FileReader()
+{
+	ifstream file("ForLexer.txt");
 	string str;
-	
-	if (file.is_open())
+	try
 	{
-		while (!file.eof())
+		if (file.is_open())
 		{
-			getline(file, str);
-			input.push_back(str);
+			while (!file.eof())
+			{
+				getline(file, str);
+				text.push_back(str);
+			}
 		}
+		else
+			throw exception("Ошибка чтения файла ");
 	}
-	else
-		throw exception("Ошибка чтения файла ");
-	 
+	catch (const std::exception&ex)
+	{
+		cout << ex.what();
+		abort();
+	}
+	
 	file.close();
-	return input;
 }
 
 int Lexer::GetStatesCount()
@@ -53,16 +64,15 @@ vector<int> Lexer::GetFinalStates()
 	return _finalStates;
 }
 
-Hash<int> Lexer::GetTransitions()
+Hash<int>* Lexer::GetTransitions()
 {
-	return _transitions;
+	return &_transitions;
 }
 
 void Lexer::StringAnalyzer()
 {
 	string temp;
 	int j = 0;
-	list<string> text = FileReader();
 	for (string str : text)
 	{
 		for (int i = 0; i < str.size(); i++)
@@ -159,7 +169,6 @@ void Lexer::StringAnalyzer()
 				string key;
 				for (; i < str.size(); i++)
 				{
-					i++;
 					temp = "";
 					for (; i < str.size(); i++)
 					{
@@ -180,17 +189,21 @@ void Lexer::StringAnalyzer()
 							i++;
 							for (; i < str.size(); i++)
 							{
-								if (str[i] == ',')
+								if (str[i] == ',' || str[i] == ')')
 									break;
 								temp += str[i];
 							}
 							data = stoi(temp);
 							temp = "";
+							_transitions.AddState(id, key, data);
+							key = "";
+							if (str[i] == ')')
+								break;
 							i++;
+							
 						}
 						key += str[i];
 					}
-					_transitions.AddState(id, key, data);
 				}
 				temp = "";
 			}
@@ -206,7 +219,6 @@ void Lexer::StringAnalyzer()
 							break;
 						temp += str[i];
 					}
-					i++;
 					_text.push_back(temp);
 				}
 				temp = "";

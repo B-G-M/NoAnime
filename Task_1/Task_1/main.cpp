@@ -119,10 +119,9 @@ int main()
 	//{
 	//	hash.table[i];
 	//}
-	Lexer lexer;
-	lexer.StringAnalyzer();
-	FSM fsm(lexer);
-	fsm.test();
+	
+	FSM fsm;
+	cout << fsm.test();
 	
 
 	return 0;

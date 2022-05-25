@@ -7,6 +7,7 @@
 #include "Lexer.h"
 #include "Hash.h"
 #include "FSM.h"
+#include "PolishTranslate.h"
 
 using namespace std;
 
@@ -120,9 +121,12 @@ int main()
 	//	hash.table[i];
 	//}
 	
-	FSM fsm;
-	cout << fsm.test();
+	//FSM fsm;
+	//cout << fsm.test();
 	
+
+	PolishTranslate a;
+	cout << a._Translate("8 + 2 * ( 5 + 7 ) * 2");
 
 	return 0;
 }

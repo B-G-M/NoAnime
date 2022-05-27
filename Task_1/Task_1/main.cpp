@@ -7,7 +7,7 @@
 #include "Lexer.h"
 #include "Hash.h"
 #include "FSM.h"
-#include "PolishTranslate.h"
+#include "PolishInversion.h"
 
 using namespace std;
 
@@ -125,8 +125,9 @@ int main()
 	//cout << fsm.test();
 	
 
-	PolishTranslate a;
-	cout << a._Translate("8 + 2 * ( 5 + 7 ) * 2");
+	PolishInversion a;
+	cout << a._Translate("( 8 * 3 - 5 ) + ( 3 - 7 )  /  ( 12 - 21 )");
+	//cout << a._Translate("8 + 2 * ( 5 + 7 ) + 2");
 
 	return 0;
 }

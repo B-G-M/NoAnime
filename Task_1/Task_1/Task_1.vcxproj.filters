@@ -36,7 +36,7 @@
     <ClCompile Include="Lexer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="PolishTranslate.cpp">
+    <ClCompile Include="PolishInversion.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,7 +62,10 @@
     <ClInclude Include="Lexer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="PolishTranslate.h">
+    <ClInclude Include="PolishInversion.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Translator.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

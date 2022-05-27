@@ -121,12 +121,12 @@ int main()
 	//	hash.table[i];
 	//}
 	
-	//FSM fsm;
-	//cout << fsm.test();
+	FSM fsm;
+	cout << fsm.test();
 	
 
-	PolishInversion a;
-	cout << a._Translate("( 8 * 3 - 5 ) + ( 3 - 7 )  /  ( 12 - 21 )");
+	/*PolishInversion a;
+	cout << a._Translate("( 8 * 3 - 5 ) + ( 3 - 7 )  /  ( 12 - 21 )");*/
 	//cout << a._Translate("8 + 2 * ( 5 + 7 ) + 2");
 
 	return 0;

@@ -1,6 +1,6 @@
-alphabet:taras,gey,polina,axyela
+alphabet:teacher,student,word,something
 states:2
 startState:0
 finalStates:1
-transitions:0(taras:0,gey:1,polina:0,axyela:1)1(taras:0,gey:1,polina:0,axyela:1)
-text:taras,gey,polina,axyela
+transitions:0(teacher:0,student:1,word:0,something:1)1(teacher:0,student:1,word:0,something:1)
+text:teacher,student,word,something

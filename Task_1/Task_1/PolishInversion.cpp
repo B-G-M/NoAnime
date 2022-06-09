@@ -9,12 +9,12 @@
 //	bool ok = _StringToVector(input);
 //	if (!ok)
 //	{
-//		return "Боря душнич!!!";
+//		return "Нет ты!!!";
 //	}
 //	ok = _BracketCheck();
 //	if (!ok)
 //	{
-//		return "Боря душнич!!!";
+//		return "Нет ты!!!";
 //	}
 //
 //	bool flag = false;

@@ -1,6 +1,14 @@
-﻿  FSM.cpp
+﻿  Deque.cpp
+  FSM.cpp
+  The contents of <optional> are available only with C++17 or later.
+  Lexer.cpp
   The contents of <optional> are available only with C++17 or later.
   main.cpp
   The contents of <optional> are available only with C++17 or later.
+  Memory.cpp
+  PolishInversion.cpp
+  Queue.cpp
+  Stack.cpp
   Создание кода...
+  LINK : не найден или не выполнена сборка D:\NoAnime\Task_1\x64\Debug\Task_1.exe при последней инкрементной компоновке; выполняется полная компоновка
   Task_1.vcxproj -> D:\NoAnime\Task_1\x64\Debug\Task_1.exe

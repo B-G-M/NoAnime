@@ -8,14 +8,9 @@
 using namespace std;
 
 
-Lexer::Lexer()
+void Lexer::FileReader(string fileName)
 {
-	FileReader();
-}
-
-void Lexer::FileReader()
-{
-	ifstream file("ForLexer.txt");
+	ifstream file(fileName);
 	string str;
 	try
 	{
@@ -39,20 +34,10 @@ void Lexer::FileReader()
 	file.close();
 }
 
-int Lexer::GetStatesCount()
-{
-
-	return _statesCount;
-}
 
 int Lexer::GetStartState()
 {
 	return _startState;
-}
-
-vector<string> Lexer::GetText()
-{
-	return _text;
 }
 
 vector<string> Lexer::GetAlphabet()
@@ -70,8 +55,9 @@ Hash<int>* Lexer::GetTransitions()
 	return &_transitions;
 }
 
-void Lexer::StringAnalyzer()
+void Lexer::StringAnalyzer(string fileName)
 {
+	FileReader(fileName);
 	string temp;
 	int j = 0;
 	for (string str : text)
@@ -95,25 +81,6 @@ void Lexer::StringAnalyzer()
 					temp = "";
 				}
 				j = 0;
-			}
-			else if (temp == "states:")
-			{
-				i++;
-				temp = "";
-				for (; i < str.size(); i++)
-				{
-					temp += str[i];
-				}
-				try 
-				{
-					_statesCount = stoi(temp);
-				}
-				catch (exception &ex)
-				{
-					cout << ex.what();
-					abort();
-				}
-				temp = "";
 			}
 			else if (temp == "startState:")
 			{
@@ -179,7 +146,7 @@ void Lexer::StringAnalyzer()
 					i++;
 					for (; i < str.size(); i++)
 					{
-						if (str[i] == ')')
+						if (str[i] == ')' && str[i - 1] != '(')
 							break;
 						if (str[i] == ':')
 						{
@@ -201,22 +168,6 @@ void Lexer::StringAnalyzer()
 						}
 						key += str[i];
 					}
-				}
-				temp = "";
-			}
-			else if (temp == "text:")
-			{
-				i++;
-				for (; i < str.size(); i++)
-				{	
-					temp = "";
-					for (; i < str.size(); i++)
-					{
-						if (str[i] == ',')
-							break;
-						temp += str[i];
-					}
-					_text.push_back(temp);
 				}
 				temp = "";
 			}

@@ -120,7 +120,7 @@ int main()
 	//	hash.table[i];
 	//}
 	
-	FSM fsm;
+	FSM fsm("if (a == 1)","ForLexer.txt");
 	cout << fsm.test();
 	
 

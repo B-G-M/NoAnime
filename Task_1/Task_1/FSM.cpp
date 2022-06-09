@@ -3,14 +3,14 @@
 #include <iostream>
 using namespace std;
 
-FSM::FSM()
+FSM::FSM(string text, string fileName)
 {
-	lexer.StringAnalyzer();
+	lexer.StringAnalyzer(fileName);
 	_alphabet = lexer.GetAlphabet();
 	_currentState = lexer.GetStartState();
 	_finalStates = lexer.GetFinalStates();
 	_transitions = lexer.GetTransitions();
-	_text = lexer.GetText();
+	_text = text;
 	path += "start -> ";
 }
 
@@ -19,10 +19,23 @@ string FSM::test()
 {
 	try
 	{
+		string word;
+		string var;
 		for (size_t i = 0; i < _text.size(); i++)
 		{
-			_CheckWordInAlphabet(_text[i]);
-			_ChangeState(_text[i]);
+			if (_text[i] == ' ' || _isSymbol(_text[i], word))
+			{
+				while (_text[i] == ' ')
+					i++;
+				if (_CheckWordInAlphabet(word))
+					_ChangeState(word);
+				else if (_CheckWordInAlphabet("var"))
+					_ChangeState("var");
+				else
+					throw exception(("Некорректная лексема: " + word).data());
+				word = "";
+			}
+			word += _text[i];
 		}
 		for (size_t i = 0; i < _finalStates.size(); i++)
 		{
@@ -51,7 +64,7 @@ bool FSM::_CheckWordInAlphabet(string word)
 		if (word == _alphabet[i])
 			return true;
 	}
-	throw exception(("Некорректная лексема: "+ word).data()); 
+	return false;
 }
 
 void FSM::_ChangeState(string word)
@@ -64,4 +77,20 @@ void FSM::_ChangeState(string word)
 	}
 	else
 		throw exception(("Не существует перехода из состояния " + to_string(_currentState) + " для "+ word).data());
+}
+
+bool FSM::_isSymbol(char symbol1, string symbol2)
+{
+	int code1 = (int)symbol1;
+	if (code1 >= 33 && code1 <= 47)
+		return true;
+
+	if (symbol2.size() == 1)
+	{
+		int code2 = (int)symbol2[0];
+		if (code2 >= 33 && code2 <= 47)
+			return true;
+	}
+
+	return false;
 }

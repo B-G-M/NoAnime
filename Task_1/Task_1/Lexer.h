@@ -8,22 +8,20 @@ using namespace std;
 class Lexer
 {
 public:
-	Lexer();
+	Lexer(){};
 	~Lexer() {};
 	
-	void FileReader();
-	int GetStatesCount();
+	void FileReader(string fileName);
 	int GetStartState();
-	vector<string> GetText();
 	vector<string> GetAlphabet();
 	vector<int> GetFinalStates();
 	Hash<int>* GetTransitions();
-	void StringAnalyzer();
+	void StringAnalyzer(string fileName);
 private:
+
 	list<string> text;
 	int _statesCount = 0;
 	int _startState = 0;
-	vector<string> _text;
 	vector<string> _alphabet;
 	vector<int> _finalStates;
 	Hash<int> _transitions;

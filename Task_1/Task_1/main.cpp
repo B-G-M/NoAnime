@@ -8,6 +8,10 @@
 #include "Hash.h"
 #include "FSM.h"
 #include "PolishInversion.h"
+#include "Translation.h"
+
+#include<string>
+#include<list>
 
 using namespace std;
 
@@ -22,6 +26,8 @@ int main()
 	Stack stack;
 	Queue queue;
 	Deque deque;
+
+	
 
 	/*memory.PushBack(8);
 	memory.PushBack(3);
@@ -121,14 +127,15 @@ int main()
 	//	hash.table[i];
 	//}
 	
-	FSM fsm("if (a == 1)","ForLexer.txt");
-	cout << fsm.test();
+	/*FSM fsm("if (a == 1)","ForLexer.txt");
+	cout << fsm.test();*/
 	
 
 	/*PolishInversion a;
-	cout << a._Translate("( 8 * 3 - 5 ) + ( 3 - 7 )  /  ( 12 - 21 )");*/
-	//cout << a._Translate("8 + 2 * ( 5 + 7 ) + 2");
+	cout << a.Translate("8 + 2 * (5 + 7) + 2");*/
 
+	Translation a;
+	a.Start();
 	return 0;
 }
 

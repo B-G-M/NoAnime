@@ -1,0 +1,4 @@
+double r
+input(r)
+r = r * r * 3.14
+output(r)

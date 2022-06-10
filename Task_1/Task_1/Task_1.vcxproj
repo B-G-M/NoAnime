@@ -147,6 +147,7 @@
     <ClCompile Include="PolishInversion.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="Translation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Deque.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="Translation.h" />
     <ClInclude Include="Translator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

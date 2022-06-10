@@ -34,5 +34,6 @@ private:
 	bool _VarReVal(string name, string value);
 	bool _AlphCheck(string check);
 	string _VariableCheck(string check);
+	void _LineMathReading();
 };
 

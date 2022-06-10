@@ -65,12 +65,43 @@ void Translation::_LineReading()
 		buffer += _file.front()[i];
 	}
 	_line.push_back(buffer);
-	_file.pop_front();
+}
+
+void Translation::_LineMathReading()
+{
+	_line.clear();
+	string buffer = "";
+	for (int i = 0; i < _file.front().size() - 1; i++)
+	{
+		if (_file.front()[i] == ' ')
+		{
+			_line.push_back(buffer);
+			buffer = "";
+			continue;
+		}
+		else if (_file.front()[i] == '(')
+		{
+			_line.push_back(buffer);
+			_line.push_back("(");
+			buffer = "";
+			continue;
+		}
+		else if (_file.front()[i] == ')')
+		{
+			_line.push_back(buffer);
+			_line.push_back(")");
+			buffer = "";
+			continue;
+		}
+		buffer += _file.front()[i];
+	}
+	_line.push_back(buffer);
 }
 
 void Translation::_LineClean()
 {
 	_line.clear();
+	_file.pop_front();
 }
 
 bool Translation::_VarReVal(string name, string value)
@@ -79,6 +110,18 @@ bool Translation::_VarReVal(string name, string value)
 	{
 		if (iter->name == name)
 		{
+			if (iter->type == "double")
+			{
+				try
+				{
+					stod(value);
+
+				}
+				catch (const std::exception&ex)
+				{
+					cout << ex.what();
+				}
+			}
 			iter->value = value;
 			return true;
 		}
@@ -119,6 +162,7 @@ void Translation::_Execution()
 		{
 			if (_line[i] == "=")
 			{
+				_LineMathReading();
 				for (int j = i+1; j < _line.size(); j++)
 				{
 					if (_VariableCheck(_line[j]) != "NoOne")

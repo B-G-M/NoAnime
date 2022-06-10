@@ -25,7 +25,7 @@ private:
 	bool _isSymbol(char symbol1,string symbol2);
 	bool _CheckExistTransition(int state, string word);
 	bool _CheckWordInAlphabet(string word);
-	void _ChangeState(string word);
+	bool _ChangeState(string word);
 
 };
 

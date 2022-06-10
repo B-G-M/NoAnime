@@ -30,7 +30,10 @@ string FSM::test()
 				if (_CheckWordInAlphabet(word))
 					_ChangeState(word);
 				else if (_CheckWordInAlphabet("var"))
-					_ChangeState("var");
+				{
+					if (!_ChangeState("var"))
+						throw exception(("Некорректная лексема: " + word).data());
+				}
 				else
 					throw exception(("Некорректная лексема: " + word).data());
 				word = "";
@@ -67,16 +70,19 @@ bool FSM::_CheckWordInAlphabet(string word)
 	return false;
 }
 
-void FSM::_ChangeState(string word)
+bool FSM::_ChangeState(string word)
 {
 
 	if (_CheckExistTransition(_currentState, word))
 	{
 		path += "s:" + to_string(_currentState) + "|w:" + word + " -> ";
 		_currentState = _transitions->GetData(_currentState, word);
+		return true;
 	}
+	else if (word != "var")
+		throw exception(("Не существует перехода из состояния " + to_string(_currentState) + " для " + word).data());
 	else
-		throw exception(("Не существует перехода из состояния " + to_string(_currentState) + " для "+ word).data());
+		return false;
 }
 
 bool FSM::_isSymbol(char symbol1, string symbol2)

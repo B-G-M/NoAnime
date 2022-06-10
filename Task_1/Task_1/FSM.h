@@ -7,10 +7,10 @@
 class FSM 
 {
 public:
-	FSM(string text, string fileName);
+	FSM(string fileName);
 	~FSM(){};
 
-	string test();
+	string test(string text);
 
 private:
 	Lexer lexer;

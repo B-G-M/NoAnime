@@ -127,10 +127,6 @@ int main()
 	//	hash.table[i];
 	//}
 	
-	/*FSM fsm("if (a == 1)","ForLexer.txt");
-	cout << fsm.test();*/
-	
-
 	/*PolishInversion a;
 	cout << a.Translate("8 + 2 * (5 + 7) + 2");*/
 

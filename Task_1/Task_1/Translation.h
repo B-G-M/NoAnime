@@ -7,26 +7,8 @@ using namespace std;
 class Translation
 {
 public:
-	Translation() {
-		_alphabet.push_back("input");
-		_alphabet.push_back("output");
-		_alphabet.push_back("[");
-		_alphabet.push_back("]");
-		_alphabet.push_back("int");
-		_alphabet.push_back("double");
-		_alphabet.push_back("for");
-		_alphabet.push_back("if");
-		_alphabet.push_back("=");
-		_alphabet.push_back("==");
-		_alphabet.push_back(">");
-		_alphabet.push_back(">=");
-		_alphabet.push_back("=<");
-		_alphabet.push_back("+");
-		_alphabet.push_back("*");
-		_alphabet.push_back("/");
-		_alphabet.push_back("(");
-		_alphabet.push_back(")");
-
+	Translation() 
+	{
 		//int,double,for,if,=,==,>,>=,-,(,),var
 	};
 	~Translation() {};

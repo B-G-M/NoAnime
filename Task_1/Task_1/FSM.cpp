@@ -3,22 +3,22 @@
 #include <iostream>
 using namespace std;
 
-FSM::FSM(string text, string fileName)
+FSM::FSM(string fileName)
 {
 	lexer.StringAnalyzer(fileName);
 	_alphabet = lexer.GetAlphabet();
 	_currentState = lexer.GetStartState();
 	_finalStates = lexer.GetFinalStates();
 	_transitions = lexer.GetTransitions();
-	_text = text;
 	path += "start -> ";
 }
 
 
-string FSM::test()
+string FSM::test(string text)
 {
 	try
 	{
+		_text = text;
 		string word;
 		string var;
 		for (size_t i = 0; i < _text.size(); i++)

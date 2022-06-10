@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include "PolishInversion.h"
+#include "FSM.h"
 
 
 using namespace std;
@@ -37,9 +38,11 @@ void Translation::FileReader(string fileName)
 
 void Translation::Start()
 {
+	FSM fsm("Radius.txt");
 	FileReader("CODE.txt");
 	while(_file.size()!=0)
 	{
+		cout << fsm.test(_file.front());
 		_LineReading();
 		_Execution();
 		_LineClean();
@@ -49,7 +52,7 @@ void Translation::Start()
 void Translation::_LineReading()
 {
 	string buffer = "";
-	for(int i = 0; i < _file.front().size(); i++)
+	for(int i = 0; i < _file.front().size()-1; i++)
 	{
 		if (_file.front()[i] == ' '|| _file.front()[i] == '(' || _file.front()[i] == ')')
 		{

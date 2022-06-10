@@ -1,4 +1,4 @@
 alphabet:int,double,for,if,=,==,>,>=,-,(,),var,*,input,output,;
 startState:0
 finalStates:4
-transitions:0(var:1,double:5,input:6,output:6)1(=:2)2(var:3,;:4)3(*:2)5(var:2)6((:8)8(var:9)9():2)
+transitions:0(var:1,double:5,input:6,output:6)1(=:2)2(var:3,;:4)3(*:2,;:4)5(var:2)6((:8)8(var:9)9():2)

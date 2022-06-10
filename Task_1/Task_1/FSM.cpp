@@ -18,10 +18,11 @@ string FSM::test(string text)
 {
 	try
 	{
+		_currentState = lexer.GetStartState();
 		_text = text;
 		string word;
 		string var;
-		for (size_t i = 0; i < _text.size(); i++)
+		for (size_t i = 0; i <= _text.size(); i++)
 		{
 			if (_text[i] == ' ' || _isSymbol(_text[i], word))
 			{
@@ -88,15 +89,22 @@ bool FSM::_ChangeState(string word)
 bool FSM::_isSymbol(char symbol1, string symbol2)
 {
 	int code1 = (int)symbol1;
+	if (code1 == 46)
+		return false;
 	if (code1 >= 33 && code1 <= 47)
+		return true;
+	if (code1 == 59)
 		return true;
 
 	if (symbol2.size() == 1)
 	{
 		int code2 = (int)symbol2[0];
+		if (code2 == 46)
+			return false;
 		if (code2 >= 33 && code2 <= 47)
 			return true;
+		if (code2 == 59)
+			return true;
 	}
-
 	return false;
 }

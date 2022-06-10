@@ -40,12 +40,14 @@ void Translation::Start()
 {
 	FSM fsm("Radius.txt");
 	FileReader("CODE.txt");
+	int i = 0;
 	while(_file.size()!=0)
 	{
-		cout << fsm.test(_file.front());
+		cout << fsm.test(_file.front()) << endl;
 		_LineReading();
 		_Execution();
 		_LineClean();
+		i++;
 	}
 }
 

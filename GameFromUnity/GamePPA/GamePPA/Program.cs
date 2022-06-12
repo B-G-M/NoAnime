@@ -9,7 +9,7 @@ namespace GamePPA
         {
             Field field;
 
-            int Bank = 100;
+            int Bank = 50;
             int choose = -1;
             bool leftFront = true;
             List<int> unitsChoosenLeft = new List<int>();
@@ -58,7 +58,7 @@ namespace GamePPA
                 if (Bank == 0)
                 {
                     leftFront = false;
-                    Bank = 100;
+                    Bank = 50;
                 }
                 Console.Clear();
             }
@@ -111,7 +111,7 @@ namespace GamePPA
             {
                 Console.Clear();
                 Console.WriteLine(field.GetFieldInfo());
-                Console.WriteLine("1:Шаг\n" +
+                Console.WriteLine("1:Шаг" +
                     "2:Save" +
                     "3:Load" +
                     "4:Exit");
@@ -151,7 +151,7 @@ namespace GamePPA
                         flag = false;
                         break;
                     default:
-                        Console.WriteLine("Пошел нахуй мусор");
+                        Console.WriteLine("Выбран неверный вариант");
                         break;
                 }
             }

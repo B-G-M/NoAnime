@@ -67,11 +67,21 @@ public class Line
 		for (int i = 0; i < leftFront.Count; i++)
 		{
 			info += "{"+leftFront[i].Name + " ; " + leftFront[i].Health+"}";
+			if (leftFront[i].Id == 5)
+				foreach (var ammun in ((Knight)leftFront[i]).DressedAmmunitions)
+				{
+					info += ";" + ammun.Name;
+				}
 		}
 		info += " = ";
 		for (int i = 0; i < rightFront.Count; i++)
 		{
 			info += "{" + rightFront[i].Name + " ; " + rightFront[i].Health + "}";
+			if (rightFront[i].Id == 5)
+				foreach (var ammun in ((Knight)rightFront[i]).DressedAmmunitions)
+				{
+					info += ";" + ammun.Name;
+				}
 		}
 		return info;
     }

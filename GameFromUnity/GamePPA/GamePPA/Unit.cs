@@ -202,34 +202,37 @@ class Wizard : Unit
 
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
-		if (IsAbility())
-		{
-			List<IUnit> friend = GetFriendlyFront(friendly, line);
-			Barracks a = new Barracks();
-			int newId = -1;
+        if (IsAbility())
+        {
+            List<IUnit> friend = GetFriendlyFront(friendly, line);
+            Barracks a = new Barracks();
+            int newId = -1;
 
-			if (index - 1 >= 0)
+			if(friend.Count > 1)
 			{
-				newId = (int)friend[(int)index - 1].Id;
-			}
-			else if (index + 1 < friend.Count)
-			{
-				newId = (int)friend[(int)index + 1].Id;
-			}
-
-			if (newId != -1)
-			{
-				if (friendly == 'l')
+				if (index > 0)
 				{
-					line.addLeft(a.Birth(newId));
+					newId = (int)friend[(int)index - 1].Id;
 				}
-				else
+				else if (index + 1 < friend.Count)
 				{
-					line.addRight(a.Birth(newId));
+					newId = (int)friend[(int)index + 1].Id;
 				}
 			}
-		}
-	}
+
+            if (newId != -1)
+            {
+                if (friendly == 'l')
+                {
+                    line.addLeft(a.Birth(newId));
+                }
+                else
+                {
+                    line.addRight(a.Birth(newId));
+                }
+            }
+        }
+    }
 }
 
 class Tumbleweed : Unit

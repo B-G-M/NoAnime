@@ -1,0 +1,5 @@
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.csproj.AssemblyReference.cache
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.GeneratedMSBuildEditorConfig.editorconfig
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.AssemblyInfoInputs.cache
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.AssemblyInfo.cs
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.csproj.CoreCompileInputs.cache

@@ -8,10 +8,10 @@ public abstract class UnitFactory
 		IUnit unit = Create();
 		
 		if (hp > 0)
-			unit.Hit((uint)(unit.Health + unit.Defense - hp));
+			unit.DamageTaken((uint)(unit.Health + unit.Defense - hp));
 		return unit;
 	}
-
+	public abstract IUnit Create();
 }
 
 
@@ -39,11 +39,11 @@ class ArcherCreator : UnitFactory
 	}
 }
 
-class KinghtCreator : UnitFactory
+class KnightCreator : UnitFactory
 {
 	public override IUnit Create()
 	{
-		return new Kinght();
+		return new Knight();
 	}
 }
 
@@ -96,7 +96,7 @@ class Barracks
 		}
 		if (id == 5)
         {
-			unitFactory = new KinghtCreator();
+			unitFactory = new KnightCreator();
         }
 		if (id == 6)
         {

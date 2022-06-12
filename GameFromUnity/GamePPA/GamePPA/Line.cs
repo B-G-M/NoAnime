@@ -20,23 +20,34 @@ public class Line
 		rightFront.Add(unit);
 	}
 
+	//Проверка на умерших юнитов в линии
 	public void Wasted()
 	{
-		//Подписчик на смерть юнита
-		//Удаляет юнита если пришло сообщение о смерти
-
-		//Если все юниты умерли, то отправляет сообщение о проигрыше полю 
-
-		//Добавляет умершего юнита в счетчик смертей фронта линии
+        for (int i = 0; i < leftFront.Count; i++)
+        {
+            if (leftFront[i].Health <= 0)
+            {
+				leftFront.RemoveAt(i);
+            }
+        }
+		for (int i = 0; i < rightFront.Count; i++)
+		{
+			if (rightFront[i].Health <= 0)
+			{
+				rightFront.RemoveAt(i);
+			}
+		}
 	}
 
+
+	//ходы
 	public void Movement()
 	{
 		for (int i = 0; i < leftFront.Count; i++)
 		{
 			if (rightFront.Count > 0 && leftFront[i].AttackRange > i)
 			{
-				rightFront[0].Hit(leftFront[i].Damage);
+				rightFront[0].DamageTaken(leftFront[i].Damage);
 				leftFront[i].SpecialAbility(this, (uint)i, 'l');
 			}
 		}
@@ -44,23 +55,39 @@ public class Line
 		{
 			if (leftFront.Count > 0 && rightFront[i].AttackRange > i)
 			{
-				leftFront[0].Hit(rightFront[i].Damage);
+				leftFront[0].DamageTaken(rightFront[i].Damage);
 				rightFront[i].SpecialAbility(this, (uint)i, 'r');
 			}
 		}
 	}
 
-	private String GetFrontInfo(List<IUnit> front)
+	public string GetLineInfo()
+    {
+		string info = "";
+		for (int i = 0; i < leftFront.Count; i++)
+		{
+			info += "{"+leftFront[i].Name + " ; " + leftFront[i].Health+"}";
+		}
+		info += " = ";
+		for (int i = 0; i < rightFront.Count; i++)
+		{
+			info += "{" + rightFront[i].Name + " ; " + rightFront[i].Health + "}";
+		}
+		return info;
+    }
+
+	//Вывод инфы о списке юнитов
+	public String GetFrontInfo(List<IUnit> front)
 	{
 		String frontInfo = "";
 		foreach (var unit in leftFront)
 		{
-			String unitInfo = unit.Id.ToString() + ';' + unit.Health.ToString();
+			String unitInfo = unit.Name.ToString() + ';' + unit.Health.ToString();
 
 			String unitAddInfo = "";
 			
 			if (unit.Id == 5)
-				foreach (var ammun in ((Kinght)unit).DressedAmmunitions)
+				foreach (var ammun in ((Knight)unit).DressedAmmunitions)
 				{
 					unitAddInfo = unitAddInfo + ";" + ammun.Name;
 				}
@@ -70,11 +97,15 @@ public class Line
 
 		return frontInfo;
 	}
+
+	//Вывод инфы об обоих фронтах
 	public override string ToString()
 	{
 		return "{" + GetFrontInfo(leftFront) + '=' + GetFrontInfo(rightFront) + "}";
 	}
 
+
+	//Не понятно что происходит
 	private void FullFront(String text, List<IUnit> front)
 	{
 		Regex regex = new Regex(@"\((.+)\)");
@@ -93,16 +124,16 @@ public class Line
 						switch (unitInfo[i])
 						{
 							case "Шлем":
-								((Kinght)unit).DressedAmmunitions.Add(new Hemlet());
+								((Knight)unit).DressedAmmunitions.Add(new Hemlet());
 								break;
 							case "Щит":
-								((Kinght)unit).DressedAmmunitions.Add(new Shield());
+								((Knight)unit).DressedAmmunitions.Add(new Shield());
 								break;
 							case "Пика":
-								((Kinght)unit).DressedAmmunitions.Add(new Peak());
+								((Knight)unit).DressedAmmunitions.Add(new Peak());
 								break;
 							case "Коняшка":
-								((Kinght)unit).DressedAmmunitions.Add(new Horse());
+								((Knight)unit).DressedAmmunitions.Add(new Horse());
 								break;
 							default: break;
 						}
@@ -110,6 +141,8 @@ public class Line
 			}
 		}
 	}
+
+	//Разделение инфы на 2 части FullFront
 	public void Deserialization(String text)
 	{
 		String[] frontInfo = text.Split(new char[] { '=' });

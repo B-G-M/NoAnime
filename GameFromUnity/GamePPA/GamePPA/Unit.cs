@@ -19,7 +19,7 @@ public interface IUnit
 	public void SpecialAbility(Line line, uint index, char friendly);
 	public List<IUnit> GetFriendlyFront(char friendly, Line line);
 	public List<IUnit> GetEnemyFront(char friendly, Line line);
-	public void Hit(uint damageTaken);
+	public void DamageTaken(uint damageTaken);
 	public bool IsAbility();
 	public void Heal(uint receivedHealing);
 }
@@ -48,8 +48,7 @@ abstract public class Unit : IUnit
 
 	public abstract void SpecialAbility(Line line, uint index, char friendly);
 
-	public bool
-		IsAbility() 
+	public bool IsAbility() 
 	{
 		Random rnd = new Random();
 		float chance = (float)rnd.NextDouble();
@@ -81,13 +80,9 @@ abstract public class Unit : IUnit
 		return line.rightFront;
 	}
 
-	public virtual void Hit(uint damageTaken)
+	public virtual void DamageTaken(uint damageTaken)
 	{
 		_hp = (int)Math.Max(_hp - damageTaken + _def, 0);
-		if (_hp == 0)
-		{
-			
-		}
 	}
 
 	public void Heal(uint receivedHealing)
@@ -110,7 +105,7 @@ class Warior : Unit
 		_chance = 0.3f;
 	}
 
-	private bool Dress(Kinght warior)
+	private bool Dress(Knight warior)
 	{
 		List<String> ups = new List<String> { "Шлем", "Щит", "Пика", "Коняшка" };
 		foreach (var ammunition in warior.DressedAmmunitions)
@@ -153,12 +148,12 @@ class Warior : Unit
 			bool dressFlg = false;
 			if (index > 0 && friends[(int)index - 1].Id == 5)
 			{
-				dressFlg = Dress((Kinght)friends[(int)index - 1]);
+				dressFlg = Dress((Knight)friends[(int)index - 1]);
 			}
 
 			if (!dressFlg && index < friends.Count - 1 && friends[(int)index + 1].Id == 5)
 			{
-				Dress((Kinght)friends[(int)index + 1]);
+				Dress((Knight)friends[(int)index + 1]);
 			}
 		}
 	}
@@ -184,7 +179,7 @@ class Archer : Unit
 		{
 			if (this.GetEnemyFront(friendly, line).Count >= 2)
 			{
-				this.GetEnemyFront(friendly, line)[1].Hit(_dmg);
+				this.GetEnemyFront(friendly, line)[1].DamageTaken(_dmg);
 			}
 		}
 	}
@@ -248,7 +243,7 @@ class Tumbleweed : Unit
 		_dmg = 0;
 		_def = 3;
 		_range = 0;
-		_cost = 15;
+		_cost = 14;
 		_chance = 0;
 	}
 
@@ -258,12 +253,12 @@ class Tumbleweed : Unit
 	}
 }
 
-class Kinght : Unit
+class Knight : Unit
 {
-	public Kinght()
+	public Knight()
 	{
 		_id = 5; 
-		_name = "Kinght";
+		_name = "Knight";
 		_hp = 100;
 		_maxHP = 100;
 		_dmg = 40;
@@ -281,10 +276,10 @@ class Kinght : Unit
 	}
 
 
-	public override void Hit(uint damageTaken)
+	public override void DamageTaken(uint damageTaken)
 	{
 		// Get hit from enemy.
-		base.Hit(damageTaken);
+		base.DamageTaken(damageTaken);
 
 		// May lose one of dressed ammunition.
 		if (IsAbility())

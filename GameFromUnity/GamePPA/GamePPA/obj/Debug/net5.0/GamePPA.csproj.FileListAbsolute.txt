@@ -3,3 +3,14 @@ K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.Gener
 K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.AssemblyInfoInputs.cache
 K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.AssemblyInfo.cs
 K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.csproj.CoreCompileInputs.cache
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\bin\Debug\net5.0\GamePPA.exe
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\bin\Debug\net5.0\GamePPA.deps.json
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\bin\Debug\net5.0\GamePPA.runtimeconfig.json
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\bin\Debug\net5.0\GamePPA.runtimeconfig.dev.json
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\bin\Debug\net5.0\GamePPA.dll
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\bin\Debug\net5.0\ref\GamePPA.dll
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\bin\Debug\net5.0\GamePPA.pdb
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.dll
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\ref\GamePPA.dll
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.pdb
+K:\gitrepos\NoAnime\GameFromUnity\GamePPA\GamePPA\obj\Debug\net5.0\GamePPA.genruntimeconfig.cache

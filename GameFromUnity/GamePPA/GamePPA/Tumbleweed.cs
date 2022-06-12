@@ -100,7 +100,7 @@ namespace Assets.Scripts
 			return friendly == 'r' ? line.leftFront : line.rightFront;
 		}
 
-		public void Hit(uint damageTaken)
+		public void DamageTaken(uint damageTaken)
 		{
 			_incompatible.GetHit(damageTaken);
 			if (_incompatible.GetHealth() == 0)

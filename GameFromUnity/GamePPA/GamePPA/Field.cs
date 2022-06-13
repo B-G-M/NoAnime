@@ -144,7 +144,7 @@ public class Field
 		String result = "";
 		foreach (var line in lines)
 		{
-			result = result + line.GetLineInfo() + "\n";
+			result = result + line + "\n";
 		}
 
 		if(saveType == 0)
@@ -185,7 +185,7 @@ public class Field
 					if (regex.Matches(rows[i]).Count > 0)
 					{
 						match = regex.Match(rows[i]);
-						line.Deserialization(match.Groups[1].Value);
+						line.Deserialization(match.Groups[0].Value);
 					}
 					i++;
 				}
@@ -196,7 +196,7 @@ public class Field
 				foreach (var line in lines)
 				{
 					row = sr.ReadLine();
-					if (row != null)
+					if (row == null)
 						break;
 					if (regex.Matches(row).Count > 0)
 					{

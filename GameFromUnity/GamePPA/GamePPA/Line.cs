@@ -64,6 +64,7 @@ public class Line
 	public string GetLineInfo()
     {
 		string info = "";
+		leftFront.Reverse();
 		for (int i = 0; i < leftFront.Count; i++)
 		{
 			info += "{"+leftFront[i].Name + " ; " + leftFront[i].Health+"}";
@@ -73,6 +74,7 @@ public class Line
 					info += ";" + ammun.Name;
 				}
 		}
+		leftFront.Reverse();
 		info += " = ";
 		for (int i = 0; i < rightFront.Count; i++)
 		{
@@ -90,7 +92,7 @@ public class Line
 	public String GetFrontInfo(List<IUnit> front)
 	{
 		String frontInfo = "";
-		foreach (var unit in leftFront)
+		foreach (var unit in front)
 		{
 			String unitInfo = unit.Name.ToString() + ';' + unit.Health.ToString();
 
@@ -129,17 +131,17 @@ public class Line
 			{
 				text = match.Groups[1].Value;
 				String[] unitInfo = text.Split(new char[] { ';' });
-				if (unitInfo[0] == "Warior")// сделать Enum
+				if (unitInfo[0] == "Wa")// сделать Enum
 					id = 1;
-				else if (unitInfo[0] == "Archer")
+				else if (unitInfo[0] == "Ar")
 					id = 2;
-				else if (unitInfo[0] == "Wizard")
+				else if (unitInfo[0] == "Wi")
 					id = 3;
-				else if (unitInfo[0] == "Tumbleweed")
+				else if (unitInfo[0] == "Tum")
 					id = 4;
-				else if (unitInfo[0] == "Knight")
+				else if (unitInfo[0] == "Kni")
 					id = 5;
-				else if (unitInfo[0] == "Healer")
+				else if (unitInfo[0] == "Heal")
 					id= 6;
 				IUnit unit = barracks.Birth(id, Int32.Parse(unitInfo[1]));
 

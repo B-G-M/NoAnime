@@ -17,7 +17,7 @@ namespace GamePPA
         }
         public void UnitPick()
         {
-            int Bank = 100;
+            int Bank = 10;
             int choose = 1;
             bool leftFront = true;
 
@@ -104,7 +104,7 @@ namespace GamePPA
                 if (Bank == 0)
                 {
                     leftFront = false;
-                    Bank = 100;
+                    Bank = 10;
                 }
                 Console.Clear();
             }
@@ -183,7 +183,7 @@ namespace GamePPA
                 Console.WriteLine("1:Шаг" +
                     " 2:Save" +
                     " 3:Load" +
-                    " 4:Отмена хода" +
+                    " 4:Отмена действия" +
                     " 5:Exit");
                 try
                 {

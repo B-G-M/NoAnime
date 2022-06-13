@@ -41,25 +41,61 @@ public class Line
 
 
 	//ходы
-	public void Movement()
+	public void Movement(bool leftFirst)
 	{
-		for (int i = 0; i < leftFront.Count; i++)
-		{
-			if (rightFront.Count > 0 && leftFront[i].AttackRange > i)
+        if (leftFirst)
+        {
+			for (int i = 1; i < leftFront.Count; i++)
 			{
-				rightFront[0].DamageTaken(leftFront[i].Damage);
-				leftFront[i].SpecialAbility(this, (uint)i, 'l');
+				if (rightFront.Count > 1 && leftFront[i].AttackRange > i)
+				{
+					rightFront[0].DamageTaken(leftFront[i].Damage);
+					leftFront[i].SpecialAbility(this, (uint)i, 'l');
+				}
+			}
+			for (int i = 1; i < rightFront.Count; i++)
+			{
+				if (leftFront.Count > 1 && rightFront[i].AttackRange > i)
+				{
+					leftFront[0].DamageTaken(rightFront[i].Damage);
+					rightFront[i].SpecialAbility(this, (uint)i, 'r');
+				}
 			}
 		}
-		for (int i = 0; i < rightFront.Count; i++)
-		{
-			if (leftFront.Count > 0 && rightFront[i].AttackRange > i)
+        else
+        {
+			for (int i = 1; i < rightFront.Count; i++)
 			{
-				leftFront[0].DamageTaken(rightFront[i].Damage);
-				rightFront[i].SpecialAbility(this, (uint)i, 'r');
+				if (leftFront.Count > 1 && rightFront[i].AttackRange > i)
+				{
+					leftFront[0].DamageTaken(rightFront[i].Damage);
+					rightFront[i].SpecialAbility(this, (uint)i, 'r');
+				}
+			}
+			for (int i = 1; i < leftFront.Count; i++)
+			{
+				if (rightFront.Count > 1 && leftFront[i].AttackRange > i)
+				{
+					rightFront[0].DamageTaken(leftFront[i].Damage);
+					leftFront[i].SpecialAbility(this, (uint)i, 'l');
+				}
 			}
 		}
 	}
+	
+	public void FirstRankMovement(bool leftFirst)
+    {
+		if (leftFirst)
+        {
+			rightFront[0].DamageTaken(leftFront[0].Damage);
+			leftFront[0].DamageTaken(rightFront[0].Damage);
+		}
+		else
+        {
+			leftFront[0].DamageTaken(rightFront[0].Damage);
+			rightFront[0].DamageTaken(leftFront[0].Damage);
+		}
+    }
 
 	public string GetLineInfo()
     {

@@ -160,12 +160,31 @@ public class Field
 	//Ход на поле
 	public int MovementIteration()
 	{
+		Random rnd = new Random();
 		for (int i = 0; i < lines.Count; i++)
 		{
-			lines[i].Movement();
+			int whoFirst = rnd.Next(1, 2);
+			if (whoFirst == 1)
+				lines[i].FirstRankMovement(true);
+			else
+				lines[i].FirstRankMovement(false);
 			Wasted();
 		}
+
 		LinesMoving();
+
+		for (int i = 0; i < lines.Count; i++)
+		{
+			int whoFirst = rnd.Next(1, 2);
+			if (whoFirst == 1)
+				lines[i].Movement(true);
+			else
+				lines[i].Movement(false);
+			Wasted();
+		}
+
+		LinesMoving();
+
 		return GameEnd();
 	}
 

@@ -14,6 +14,7 @@ namespace GamePPA
             bool leftFront = true;
             List<int> unitsChoosenLeft = new List<int>();
             List<int> unitsChoosenRight = new List<int>();
+
             while (true)
             {
 
@@ -31,23 +32,54 @@ namespace GamePPA
 
                 choose = Convert.ToInt32(Console.ReadLine());
 
-                if(leftFront)
-                    unitsChoosenLeft.Add(choose);
-                else
-                    unitsChoosenRight.Add(choose);
-
                 if (choose == 1)
+                {
                     Bank -= 2;
+                    if (leftFront)
+                        unitsChoosenLeft.Add(choose);
+                    else
+                        unitsChoosenRight.Add(choose);
+                }
                 else if (choose == 2 && Bank - 4 >= 0)
+                {
                     Bank -= 4;
+                    if (leftFront)
+                        unitsChoosenLeft.Add(choose);
+                    else
+                        unitsChoosenRight.Add(choose);
+                }
                 else if (choose == 3 && Bank - 10 >= 0)
+                {
                     Bank -= 10;
-                else if (choose == 4 && Bank - 14 >= 0)//хз почему, смог накупить рыцарей при банке 10
+                    if (leftFront)
+                        unitsChoosenLeft.Add(choose);
+                    else
+                        unitsChoosenRight.Add(choose);
+                }
+                else if (choose == 4 && Bank - 14 >= 0)
+                {
                     Bank -= 14;
+                    if (leftFront)
+                        unitsChoosenLeft.Add(choose);
+                    else
+                        unitsChoosenRight.Add(choose);
+                }
                 else if (choose == 5 && Bank - 12 >= 0)
+                {
                     Bank -= 12;
+                    if (leftFront)
+                        unitsChoosenLeft.Add(choose);
+                    else
+                        unitsChoosenRight.Add(choose);
+                }
                 else if (choose == 6 && Bank - 8 >= 0)
+                {
                     Bank -= 8;
+                    if (leftFront)
+                        unitsChoosenLeft.Add(choose);
+                    else
+                        unitsChoosenRight.Add(choose);
+                }
                 else if (choose < 1 || choose > 6)
                     Console.WriteLine("Выбран несуществующий юнит!!!!!!");
                 else

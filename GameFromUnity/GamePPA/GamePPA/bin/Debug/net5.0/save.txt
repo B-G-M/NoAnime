@@ -1,5 +1,2 @@
-{Warior ; 50} = {Archer ; 50}
-{Warior ; 50} = {Warior ; 50}
-{Archer ; 50} = {Warior ; 50}
-{Warior ; 50} = {Warior ; 50}
+{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Warior ; 50}{Warior ; 50}{Warior ; 50}{Warior ; 50}{Warior ; 50} = {Warior ; 50}{Warior ; 50}{Warior ; 50}{Warior ; 50}{Warior ; 50}
 

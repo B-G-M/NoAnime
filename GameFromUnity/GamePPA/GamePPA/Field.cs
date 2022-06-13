@@ -144,7 +144,7 @@ public class Field
 		String result = "";
 		foreach (var line in lines)
 		{
-			result = result + line.ToString() + "\n";
+			result = result + line.GetLineInfo() + "\n";
 		}
 
 		if(saveType == 0)

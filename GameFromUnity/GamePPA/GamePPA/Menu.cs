@@ -172,9 +172,7 @@ namespace GamePPA
             int choose = 1;
 
             bool flag = true;
-            field.Save(0);
-            field.Save(1);
-
+            field.command.makeBackup();
             Console.Clear();
             while (flag)
             {
@@ -200,7 +198,7 @@ namespace GamePPA
                 switch (choose)
                 {
                     case 1:
-                        field.Save(0);
+                        field.command.makeBackup();
                         switch (field.MovementIteration())
                         {
                             case 1:
@@ -224,13 +222,13 @@ namespace GamePPA
 
                         break;
                     case 2:
-                        field.Save(1);
+                        field.command.UserSave();
                         break;
                     case 3:
-                        field.Load(1);
+                        field.Load(field.command.UserLoad());
                         break;
                     case 4:
-                        field.Load(0);
+                        field.Load(field.command.Undo());
                         break;
                     case 5:
                         flag = false;

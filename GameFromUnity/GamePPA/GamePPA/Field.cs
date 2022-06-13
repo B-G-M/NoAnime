@@ -3,20 +3,62 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
+public class Command
+{
+	private Memento userSave;
+	private GameHistory history = new GameHistory();
+	public void makeBackup()
+	{
+		history.History.Push(Field.Save());
+	}
+	public void UserSave()
+	{
+		userSave = Field.Save();
+	}
+	public Memento UserLoad()
+	{
+		if (userSave != null)
+			return userSave;
+		return null;
+		
+	}
+	public Memento Undo()
+	{
+		return history.History.Pop();
+	}
+}
+
+public class Memento
+{
+	public string Step { get; private set; }
+
+	public Memento(string step)
+	{
+		this.Step = step;
+	}
+}
+
+class GameHistory
+{
+	public Stack<Memento> History { get; private set; }
+	public GameHistory()
+	{
+		History = new Stack<Memento>();
+	}
+}
 
 public class Field
 {
+	public Command command = new Command();
 	private static Field instance;
 	private static object instanceLock = new object();
-	private static string savePath = "save.txt";
-	private static List<string> stepsHistory = new List<string>();
-	public List<Line> lines;
+	public  static List<Line> lines;
 	Barracks barracks = new Barracks();
 
 	//Создание линий на поле
 	public Field(int linesCount)
 	{
-		this.lines = new List<Line>(linesCount);
+		lines = new List<Line>(linesCount);
 	}
 
 
@@ -139,72 +181,36 @@ public class Field
 	}
 
 	//Метод сохранения
-	public void Save(int saveType)
+	public static Memento Save()
 	{
 		String result = "";
 		foreach (var line in lines)
 		{
 			result = result + line + "\n";
 		}
-
-		if(saveType == 0)
-			stepsHistory.Add(result);
-		else if(saveType == 1)
-		{
-			try
-			{
-				StreamWriter sw = new StreamWriter(savePath);
-				sw.WriteLine(result);
-				sw.Close();
-			}
-			catch (Exception e)
-			{
-			}
-		}
-
+		return new Memento(result);
 	}
 
 	//Метод загрузки инфы из сохранения
-	public void Load(int loadType)
+	public void Load(Memento memento)
 	{
-		String row;
+		String row = memento.Step;
 		try
 		{
 			Regex regex = new Regex(@"{(.*?)}");
 			Match match;
 			int i = 0;
-			if (loadType == 0)
-			{
-				row = stepsHistory[stepsHistory.Count - 1].ToString();
-				if (stepsHistory.Count - 1 != 0)
-					stepsHistory.RemoveAt(stepsHistory.Count - 1);
+			row = memento.Step;
 
-				String[] rows = row.Split(new char[] { '\n' });
-				foreach (var line in lines)
-				{
-					if (regex.Matches(rows[i]).Count > 0)
-					{
-						match = regex.Match(rows[i]);
-						line.Deserialization(match.Groups[0].Value);
-					}
-					i++;
-				}
-			}
-			else
+			String[] rows = row.Split(new char[] { '\n' });
+			foreach (var line in lines)
 			{
-				StreamReader sr = new StreamReader(savePath);
-				foreach (var line in lines)
+				if (regex.Matches(rows[i]).Count > 0)
 				{
-					row = sr.ReadLine();
-					if (row == null)
-						break;
-					if (regex.Matches(row).Count > 0)
-					{
-						match = regex.Match(row);
-						line.Deserialization(match.Groups[1].Value);
-					}
+					match = regex.Match(rows[i]);
+					line.Deserialization(match.Groups[0].Value);
 				}
-				sr.Close();
+				i++;
 			}
 		}
 		catch (Exception e)

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\GitHub\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\GamePPA.csproj": {}
+    "D:\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\GamePPA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\GitHub\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\GamePPA.csproj": {
+    "D:\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\GamePPA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\GamePPA.csproj",
+        "projectUniqueName": "D:\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\GamePPA.csproj",
         "projectName": "GamePPA",
-        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\GamePPA.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\obj\\",
+        "projectPath": "D:\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\GamePPA.csproj",
+        "packagesPath": "C:\\Users\\bgm99\\.nuget\\packages\\",
+        "outputPath": "D:\\NoAnime\\GameFromUnity\\GamePPA\\GamePPA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bgm99\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -53,30 +53,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

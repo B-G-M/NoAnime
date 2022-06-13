@@ -1,0 +1,5 @@
+{(Warior;50)=(Warior;50)}
+{(Archer;50)=(Archer;50)}
+{(Warior;50)=(Warior;50)}
+{(Warior;50)=(Warior;50)}
+

@@ -9,7 +9,7 @@ namespace GamePPA
         {
             Field field;
 
-            int Bank = 50;
+            int Bank = 10;
             int choose = -1;
             bool leftFront = true;
             List<int> unitsChoosenLeft = new List<int>();
@@ -42,7 +42,7 @@ namespace GamePPA
                     Bank -= 4;
                 else if (choose == 3 && Bank - 10 >= 0)
                     Bank -= 10;
-                else if (choose == 4 && Bank - 14 >= 0)
+                else if (choose == 4 && Bank - 14 >= 0)//хз почему, смог накупить рыцарей при банке 10
                     Bank -= 14;
                 else if (choose == 5 && Bank - 12 >= 0)
                     Bank -= 12;
@@ -58,7 +58,7 @@ namespace GamePPA
                 if (Bank == 0)
                 {
                     leftFront = false;
-                    Bank = 50;
+                    Bank = 10;
                 }
                 Console.Clear();
             }
@@ -107,19 +107,23 @@ namespace GamePPA
             Console.ReadKey();
 
             bool flag = true;
-            while(flag)
+            field.Save(0);
+            field.Save(1);
+            while (flag)
             {
                 Console.Clear();
                 Console.WriteLine(field.GetFieldInfo());
                 Console.WriteLine("1:Шаг" +
-                    "2:Save" +
-                    "3:Load" +
-                    "4:Exit");
+                    " 2:Save" +
+                    " 3:Load" +
+                    " 4:Отмена хода" +
+                    " 5:Exit");
                 choose = Convert.ToInt32(Console.ReadLine());
                 switch(choose)
                 {
                     case 1:
-                        switch(field.MovementIteration())
+                        field.Save(0);
+                        switch (field.MovementIteration())
                         {
                             case 1:
                                 Console.Clear();
@@ -142,12 +146,15 @@ namespace GamePPA
                         
                         break;
                     case 2:
-                        field.Save();
+                        field.Save(1);
                         break;
                     case 3:
-                        field.Load();
+                        field.Load(1);
                         break;
                     case 4:
+                        field.Load(0);
+                        break;
+                    case 5:
                         flag = false;
                         break;
                     default:

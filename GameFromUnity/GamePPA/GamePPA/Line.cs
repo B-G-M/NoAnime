@@ -118,15 +118,30 @@ public class Line
 	//Не понятно что происходит
 	private void FullFront(String text, List<IUnit> front)
 	{
-		Regex regex = new Regex(@"\((.+)\)");
-		if (regex.Matches(text).Count > 0)
+		front.Clear();
+		Regex regex = new Regex(@"\((.*?)\)");
+		MatchCollection matches = regex.Matches(text);
+		int id = 0;
+		if (matches.Count > 0)
 		{
 			Barracks barracks = new Barracks();
-			foreach (var match in regex.Matches((text)))
+			foreach (Match match in matches)
 			{
+				text = match.Groups[1].Value;
 				String[] unitInfo = text.Split(new char[] { ';' });
-
-				IUnit unit = barracks.Birth(Int32.Parse(unitInfo[0]), Int32.Parse(unitInfo[1]));
+				if (unitInfo[0] == "Warior")// сделать Enum
+					id = 1;
+				else if (unitInfo[0] == "Archer")
+					id = 2;
+				else if (unitInfo[0] == "Wizard")
+					id = 3;
+				else if (unitInfo[0] == "Tumbleweed")
+					id = 4;
+				else if (unitInfo[0] == "Knight")
+					id = 5;
+				else if (unitInfo[0] == "Healer")
+					id= 6;
+				IUnit unit = barracks.Birth(id, Int32.Parse(unitInfo[1]));
 
 				if (unit.Id == 5)
 					for (int i = 2; i < unitInfo.Length; i++)
@@ -148,6 +163,7 @@ public class Line
 							default: break;
 						}
 					}
+				front.Add(unit);
 			}
 		}
 	}

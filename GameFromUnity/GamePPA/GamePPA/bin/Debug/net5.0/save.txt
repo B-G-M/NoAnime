@@ -1,2 +1,2 @@
-{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Knight ; 100}{Warior ; 50}{Warior ; 50}{Warior ; 50}{Warior ; 50}{Warior ; 50} = {Warior ; 50}{Warior ; 50}{Warior ; 50}{Warior ; 50}{Warior ; 50}
+{Wa ; 50}{Kni ; 100}{Kni ; 100}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Wa ; 50}{Wa ; 50} = {Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}{Kni ; 100}{Wa ; 50}
 

@@ -91,21 +91,10 @@ abstract public class Unit : IUnit
 	}
 }
 
-class Warior : Unit
-{
-	public Warior()
-	{
-		_id = 1; 
-		_name = "Warior";
-		_hp = 50;
-		_dmg = 15;
-		_def = 5;
-		_range = 1;
-		_cost = 2;
-		_chance = 0.3f;
-	}
 
-	private bool Dress(Knight warior)
+abstract class WariorDecorator : Unit
+{
+	protected bool Dress(Knight warior)
 	{
 		List<String> ups = new List<String> { "Шлем", "Щит", "Пика", "Коняшка" };
 		foreach (var ammunition in warior.DressedAmmunitions)
@@ -139,6 +128,23 @@ class Warior : Unit
 
 		return false;
 	}
+}
+
+class Warior : WariorDecorator
+{
+	public Warior()
+	{
+		_id = 1; 
+		_name = "Wa";
+		_hp = 50;
+		_dmg = 15;
+		_def = 5;
+		_range = 1;
+		_cost = 2;
+		_chance = 0.3f;
+	}
+
+	
 
 	public override void SpecialAbility(Line line, uint index, char friendly)
 	{
@@ -164,7 +170,7 @@ class Archer : Unit
 	public Archer()
 	{
 		_id = 2; 
-		_name = "Archer";
+		_name = "Ar";
 		_hp = 50;
 		_dmg = 20;
 		_def = 0;
@@ -190,7 +196,7 @@ class Wizard : Unit
 	public Wizard()
 	{
 		_id = 3;
-		_name = "Wizard";
+		_name = "Wi";
 		_hp = 40;
 		_maxHP = 0;
 		_dmg = 50;
@@ -240,7 +246,7 @@ class Tumbleweed : Unit
 	public Tumbleweed()
 	{
 		_id = 4;
-		_name = "Tumbleweed";
+		_name = "Tum";
 		_hp = 200;
 		_maxHP = 0;
 		_dmg = 0;
@@ -261,7 +267,7 @@ class Knight : Unit
 	public Knight()
 	{
 		_id = 5; 
-		_name = "Knight";
+		_name = "Kni";
 		_hp = 100;
 		_maxHP = 100;
 		_dmg = 40;
@@ -302,7 +308,7 @@ class Healer : Unit
 	public Healer()
 	{
 		_id = 6; 
-		_name = "Healer";
+		_name = "Heal";
 		_hp = 60;
 		_maxHP = 60;
 		_dmg = 10;

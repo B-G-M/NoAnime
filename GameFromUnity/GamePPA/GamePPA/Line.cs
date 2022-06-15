@@ -85,6 +85,8 @@ public class Line
 	
 	public void FirstRankMovement(bool leftFirst)
     {
+		if(leftFront.Count == 0 || rightFront.Count == 0)
+			return;
 		if (leftFirst)
         {
 			rightFront[0].DamageTaken(leftFront[0].Damage);
@@ -153,7 +155,6 @@ public class Line
 	}
 
 
-	//Не понятно что происходит
 	private void FullFront(String text, List<IUnit> front)
 	{
 		front.Clear();

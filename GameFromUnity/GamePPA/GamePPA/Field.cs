@@ -56,7 +56,7 @@ public class Field
 	Barracks barracks = new Barracks();
 
 	//Создание линий на поле
-	public Field(int linesCount)
+	private Field(int linesCount)
 	{
 		lines = new List<Line>(linesCount);
 	}
